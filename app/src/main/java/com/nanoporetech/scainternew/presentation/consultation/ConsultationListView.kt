@@ -1,4 +1,4 @@
-package com.nanoporetech.scainternew.presentation.consultations
+package com.nanoporetech.scainternew.presentation.consultation
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -27,7 +27,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.nanoporetech.scainternew.R
-import com.nanoporetech.scainternew.conf.AppConstants
 import com.nanoporetech.scainternew.data.Datasource
 import com.nanoporetech.scainternew.model.Consultation
 import com.nanoporetech.scainternew.utils.displayedDateAndTime

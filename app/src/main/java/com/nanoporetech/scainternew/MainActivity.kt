@@ -15,7 +15,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.nanoporetech.scainternew.model.LoginViewModel
 import com.nanoporetech.scainternew.presentation.LoginScreen
-import com.nanoporetech.scainternew.presentation.consultations.ConsultationListView
+import com.nanoporetech.scainternew.presentation.consultation.ConsultationListView
 
 enum class Dest {
     Login,
