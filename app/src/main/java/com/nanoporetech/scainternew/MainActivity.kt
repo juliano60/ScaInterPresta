@@ -48,7 +48,7 @@ fun AppNavRoot(loginModel: LoginViewModel) {
     //val isLoggedIn by loginModel.isLoggedIn.collectAsState()
     val isLoggedIn = true
 
-    val target = if (isLoggedIn) Dest.HospitalisationList.name else Dest.Login.name
+    val target = if (isLoggedIn) Dest.ConsultationList.name else Dest.Login.name
     val backStackEntry by nav.currentBackStackEntryAsState()
     val currentRoute = backStackEntry?.destination?.route
 
