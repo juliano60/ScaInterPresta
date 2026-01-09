@@ -2,8 +2,32 @@ package com.nanoporetech.scainternew.data
 
 import com.nanoporetech.scainternew.model.Consultation
 import com.nanoporetech.scainternew.model.Examination
+import com.nanoporetech.scainternew.model.Hospitalisation
 
 class Datasource {
+    fun hospitalisations(): List<Hospitalisation> = listOf (
+        Hospitalisation(
+            id = 9139,
+            fullname = "HIE GNEPA CARLOS",
+            internalId = "9MA27710",
+            coverPercentage = "80%",
+            subscriberName = "C.R. SAN-PEDRO",
+            contractType = "Société",
+            type = "Médicale",
+            status = "Accord du Medecin",
+            reason = "PALUDISME   VERTIGES   CEPHALEES   VOMISSEMENTS",
+            durationDays = 1,
+            roomType = "Chambre Simple",
+            prolongationReason = "Complications",
+            prolongationDays = 2,
+            providerName = "Clinique Medicale notre Dame",
+            creationDate = "2025-04-29T21:11:39+00:00",
+            roomCost = 20_000.0,
+            hospitalisationCost = 56_569.0,
+            dateOfBirth = "1950-01-01T00:00:00-05:00"
+        )
+    )
+
     fun examinations(): List<Examination> = listOf(
         Examination(
             id = 86088,

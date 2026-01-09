@@ -17,11 +17,13 @@ import com.nanoporetech.scainternew.model.LoginViewModel
 import com.nanoporetech.scainternew.presentation.LoginScreen
 import com.nanoporetech.scainternew.presentation.consultation.ConsultationListView
 import com.nanoporetech.scainternew.presentation.examination.ExaminationListView
+import com.nanoporetech.scainternew.presentation.hospitalisation.HospitalisationListView
 
 enum class Dest {
     Login,
     ConsultationList,
     ExaminationList,
+    HospitalisationList,
     ForgotPassword,
     Tabs
 }
@@ -46,7 +48,7 @@ fun AppNavRoot(loginModel: LoginViewModel) {
     //val isLoggedIn by loginModel.isLoggedIn.collectAsState()
     val isLoggedIn = true
 
-    val target = if (isLoggedIn) Dest.ConsultationList.name else Dest.Login.name
+    val target = if (isLoggedIn) Dest.HospitalisationList.name else Dest.Login.name
     val backStackEntry by nav.currentBackStackEntryAsState()
     val currentRoute = backStackEntry?.destination?.route
 
@@ -77,6 +79,12 @@ fun AppNavRoot(loginModel: LoginViewModel) {
         }
         composable(Dest.ExaminationList.name) {
             ExaminationListView(
+                navController = nav,
+                //model = viewModel()
+            )
+        }
+        composable(Dest.HospitalisationList.name) {
+            HospitalisationListView(
                 navController = nav,
                 //model = viewModel()
             )
