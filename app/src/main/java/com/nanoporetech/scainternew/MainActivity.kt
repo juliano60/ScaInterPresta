@@ -16,10 +16,12 @@ import androidx.navigation.compose.rememberNavController
 import com.nanoporetech.scainternew.model.LoginViewModel
 import com.nanoporetech.scainternew.presentation.LoginScreen
 import com.nanoporetech.scainternew.presentation.consultation.ConsultationListView
+import com.nanoporetech.scainternew.presentation.examination.ExaminationListView
 
 enum class Dest {
     Login,
     ConsultationList,
+    ExaminationList,
     ForgotPassword,
     Tabs
 }
@@ -69,6 +71,12 @@ fun AppNavRoot(loginModel: LoginViewModel) {
         }
         composable(Dest.ConsultationList.name) {
             ConsultationListView(
+                navController = nav,
+                //model = viewModel()
+            )
+        }
+        composable(Dest.ExaminationList.name) {
+            ExaminationListView(
                 navController = nav,
                 //model = viewModel()
             )

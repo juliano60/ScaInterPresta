@@ -1,8 +1,92 @@
 package com.nanoporetech.scainternew.data
 
 import com.nanoporetech.scainternew.model.Consultation
+import com.nanoporetech.scainternew.model.Examination
 
 class Datasource {
+    fun examinations(): List<Examination> = listOf(
+        Examination(
+            id = 86088,
+            fullname = "N GOUAN BROU ANDERSON",
+            internalId = "2MA33904",
+            coverPercentage = "80%",
+            subscriberName = "CONSEIL REGIONAL DU HAUT SASSANDRA DALOA",
+            contractType = "Société",
+            status = "Accord du Medecin",
+            controller = "Dr Kouassi Romaric",
+            provenance = null,
+            doctor = "DR SANGARE KASSIM",
+            specialty = "OPHTALMOLOGISTE ",
+            reason = "AMETROPIE ",
+            exams = listOf(
+                "GOUTTE EPAISSE",
+                "NUMERATION FORMULE SANGUINE",
+                "PRELEVEMENT SANGUIN",
+                "",
+                "",
+                "",
+                "",
+                ""
+            ),
+            answers = listOf(
+                "Validé",
+                "Validé",
+                "Validé",
+                "blank",
+                "blank",
+                "blank",
+                "blank",
+                "blank"
+            ),
+            rejectionReason = "",
+            creationDate = "2025-04-14T10:59:34+00:00",
+            total = 12000.0,
+            totalSca = 9600.0,
+            totalUser = 2400.0,
+            dateOfBirth = "1950-01-01T00:00:00-05:00"
+        ),
+        Examination(
+            id = 86088,
+            fullname = "N GOUAN BROU ANDERSON",
+            internalId = "2MA33904",
+            coverPercentage = "80%",
+            subscriberName = "CONSEIL REGIONAL DU HAUT SASSANDRA DALOA",
+            contractType = "Société",
+            status = "",
+            controller = null,
+            provenance = null,
+            doctor = null,
+            specialty = null,
+            reason = "",
+            exams = listOf(
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+            ),
+            answers = listOf(
+                "",
+                "",
+                "",
+                "blank",
+                "blank",
+                "blank",
+                "blank",
+                "blank"
+            ),
+            rejectionReason = "",
+            creationDate = "2025-04-14T10:59:34+00:00",
+            total = 12000.0,
+            totalSca = 9600.0,
+            totalUser = 2400.0,
+            dateOfBirth = "1950-01-01T00:00:00-05:00"
+        )
+    )
+
     fun consultations(): List<Consultation> = listOf(
         Consultation(
             id = 173117,
