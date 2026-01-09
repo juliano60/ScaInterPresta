@@ -91,7 +91,7 @@ fun ConsultationRowItem(
 
         Text(
             text = consultation.act,
-            color = AppConstants.mainGreen
+            color = MaterialTheme.colorScheme.onPrimaryContainer
         )
 
         Text(
