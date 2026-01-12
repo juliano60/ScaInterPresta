@@ -34,7 +34,6 @@ import com.nanoporetech.scainternew.utils.displayedDateAndTime
 
 @Composable
 fun HospitalisationListView(
-    navController: NavController,
     modifier: Modifier = Modifier,
     hospitalisations: List<Hospitalisation> = Datasource().hospitalisations()
 ) {

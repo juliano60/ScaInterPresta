@@ -33,7 +33,6 @@ import com.nanoporetech.scainternew.utils.displayedDateAndTime
 
 @Composable
 fun ConsultationListView(
-    navController: NavController,
     modifier: Modifier = Modifier,
     consultations: List<Consultation> = Datasource().consultations()
 ) {

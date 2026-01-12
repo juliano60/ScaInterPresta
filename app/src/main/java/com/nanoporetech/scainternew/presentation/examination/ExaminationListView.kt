@@ -34,7 +34,6 @@ import com.nanoporetech.scainternew.utils.displayedDateAndTime
 
 @Composable
 fun ExaminationListView(
-    navController: NavController,
     modifier: Modifier = Modifier,
     examinations: List<Examination> = Datasource().examinations()
 ) {
