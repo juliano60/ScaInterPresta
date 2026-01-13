@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
@@ -32,11 +33,12 @@ enum class Dest {
 
 @Composable
 fun App(
-    loginModel: AppViewModel = viewModel(),
+    model: AppViewModel = viewModel(),
     navHostController: NavHostController = rememberNavController()
 ) {
-    //val isLoggedIn by loginModel.isLoggedIn.collectAsState()
-    val isLoggedIn = false
+    val uiState = model.uiState.collectAsState()
+
+    val isLoggedIn = uiState.value.isLoggedIn
     val target = if (isLoggedIn) Dest.ConsultationList.name else Dest.Login.name
     val backStackEntry by navHostController.currentBackStackEntryAsState()
     val currentRoute = backStackEntry?.destination?.route
@@ -59,6 +61,13 @@ fun App(
         ) {
             composable(Dest.Login.name) {
                 LoginScreen(
+                    newUsername = uiState.value.username,
+                    newPassword = uiState.value.password,
+                    onUsernameChanged = { model.updateUsername(it) },
+                    onPasswordChanged = { model.updatePassword(it) },
+                    onLogin = {
+                        //model.login()
+                    },
                     modifier = Modifier
                         .background(AppConstants.lightGreen)
                         .fillMaxSize()

@@ -39,6 +39,11 @@ import com.nanoporetech.scainternew.conf.AppConstants
 
 @Composable
 fun LoginScreen(
+    onLogin: () -> Unit,
+    newUsername: String,
+    newPassword: String,
+    onUsernameChanged: (String) -> Unit,
+    onPasswordChanged: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Box(
@@ -60,7 +65,6 @@ fun LoginScreen(
             // WELCOME MESSAGE
             Column(
                 modifier = Modifier
-                    //.border(1.dp, color = Color.Red)
                     .fillMaxWidth()
                     .padding(vertical = dimensionResource(R.dimen.padding_large))
             ) {
@@ -75,6 +79,10 @@ fun LoginScreen(
 
             // CREDENTIALS SECTION
             CredentialsSection(
+                username = newUsername,
+                password = newPassword,
+                onUsernameChanged = onUsernameChanged,
+                onPasswordChanged = onPasswordChanged,
                 modifier = Modifier
                     .fillMaxWidth()
             )
@@ -89,7 +97,7 @@ fun LoginScreen(
             )
 
             Button(
-                onClick = {},
+                onClick = onLogin,
                 modifier = Modifier
                     .fillMaxWidth()
             ) {
@@ -132,6 +140,10 @@ fun HeaderAndLogo(
 
 @Composable
 fun CredentialsSection(
+    username: String,
+    password: String,
+    onUsernameChanged: (String) -> Unit,
+    onPasswordChanged: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -139,7 +151,7 @@ fun CredentialsSection(
         modifier = modifier
     ) {
         OutlinedTextField(
-            value = "",
+            value = username,
             singleLine = true,
             leadingIcon = {
                 Icon(Icons.Default.Person, contentDescription = null)
@@ -150,15 +162,14 @@ fun CredentialsSection(
                 unfocusedContainerColor = MaterialTheme.colorScheme.surface,
                 disabledContainerColor = MaterialTheme.colorScheme.surface
             ),
-            onValueChange = {},
+            onValueChange = { onUsernameChanged(it) },
             modifier = Modifier
                 .fillMaxWidth()
         )
 
         OutlinedTextField(
-            value = "",
+            value = password,
             singleLine = true,
-            onValueChange = {},
             leadingIcon = {
                 Icon(Icons.Default.Lock, contentDescription = null)
             },
@@ -168,6 +179,7 @@ fun CredentialsSection(
                 unfocusedContainerColor = MaterialTheme.colorScheme.surface,
                 disabledContainerColor = MaterialTheme.colorScheme.surface
             ),
+            onValueChange = { onPasswordChanged(it) },
             visualTransformation = PasswordVisualTransformation(),
             modifier = Modifier
                 .fillMaxWidth(),
@@ -216,6 +228,11 @@ fun LoginScreenPreview(
     Surface(modifier = Modifier
         .fillMaxSize()) {
         LoginScreen(
+            onLogin = {},
+            newUsername = "",
+            newPassword = "",
+            onUsernameChanged = {},
+            onPasswordChanged = {},
             modifier = Modifier
                 .background(AppConstants.lightGreen)
                 .fillMaxSize()

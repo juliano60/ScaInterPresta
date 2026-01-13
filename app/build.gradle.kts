@@ -52,6 +52,8 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(libs.androidx.navigation.runtime.android)
     implementation(libs.androidx.navigation.compose)
+    implementation (libs.retrofit)
+    implementation (libs.converter.gson)
 
 
     testImplementation(libs.junit)
