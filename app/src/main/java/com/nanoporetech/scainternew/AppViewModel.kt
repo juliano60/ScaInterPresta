@@ -1,42 +1,47 @@
 package com.nanoporetech.scainternew
 
-import android.content.Context
+import android.util.Log
 import androidx.lifecycle.ViewModel
-import com.nanoporetech.scainternew.api.BackendApi
-import com.nanoporetech.scainternew.api.RetrofitInstance
+import androidx.lifecycle.viewModelScope
+import com.nanoporetech.scainternew.network.Credentials
+import com.nanoporetech.scainternew.network.ScaApi
 import com.nanoporetech.scainternew.model.AppUiState
 import com.nanoporetech.scainternew.model.FetchProviderRequest
-import com.nanoporetech.scainternew.model.Provider
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
-import retrofit2.Call
-import retrofit2.Response
-import retrofit2.Retrofit
+import kotlinx.coroutines.launch
+import java.io.IOException
+
+//sealed interface
+private const val TAG = "AppViewModel"
 
 class AppViewModel: ViewModel() {
     // app state
     private var _uiState = MutableStateFlow(AppUiState())
     val uiState: StateFlow<AppUiState> = _uiState.asStateFlow()
 
-    fun login(
-        ctx: Context
-    ) {
+    fun login(credentials: Credentials) {
+        viewModelScope.launch {
+            try {
+                val request = FetchProviderRequest(
+                    action = "fetch",
+                    username = credentials.username,
+                    password = credentials.password
+                )
+                val provider = ScaApi.retrofitService.loginProvider(request)
 
-        // create retrofit builder
-        val retrofit = RetrofitInstance.getRetrofitInstance()
+                _uiState.update { currentState ->
+                    currentState.copy(
+                        isLoggedIn = true
+                    )
+                }
 
-        // create retrofit instance api
-        val backendApi = retrofit.create(BackendApi::class.java)
-
-        val request = FetchProviderRequest(
-            action = "fetch",
-            username = _uiState.value.username,
-            password = _uiState.value.password
-        )
-
-        //val call: Response<Provider> = backendApi.fetchProvider(request)
+            } catch (e: IOException) {
+                Log.d(TAG, e.toString())
+            }
+        }
     }
 
     fun logout() {}
@@ -51,5 +56,20 @@ class AppViewModel: ViewModel() {
         _uiState.update {  currentState ->
             currentState.copy(password = value)
         }
+    }
+
+    fun checkCredentials() {
+        val credentials = Credentials(
+            username = _uiState.value.username,
+            password = _uiState.value.password
+        )
+
+        if (credentials.isEmpty()) {
+            // TODO: set error state
+            return
+        }
+
+        // now attempt to login
+        login(credentials)
     }
 }

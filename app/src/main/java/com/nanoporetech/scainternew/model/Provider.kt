@@ -4,15 +4,6 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.serialization.Serializable
 import java.util.Locale
 
-data class FetchProviderRequest(
-    @SerializedName("action")
-    val action: String,
-    @SerializedName("username")
-    val username: String,
-    @SerializedName("password")
-    val password: String
-)
-
 enum class ProviderRole {
     HealthCare,
     Laboratory,

@@ -17,10 +17,10 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.nanoporetech.scainternew.conf.AppConstants
-import com.nanoporetech.scainternew.presentation.consultation.ConsultationListView
-import com.nanoporetech.scainternew.presentation.examination.ExaminationListView
-import com.nanoporetech.scainternew.presentation.hospitalisation.HospitalisationListView
-import com.nanoporetech.scainternew.presentation.login.LoginScreen
+import com.nanoporetech.scainternew.screens.consultation.ConsultationListView
+import com.nanoporetech.scainternew.screens.examination.ExaminationListView
+import com.nanoporetech.scainternew.screens.hospitalisation.HospitalisationListView
+import com.nanoporetech.scainternew.screens.login.LoginScreen
 
 enum class Dest {
     Login,
@@ -57,7 +57,7 @@ fun App(
     ) { innerPadding ->
         NavHost(
             navController = navHostController,
-            startDestination = if (isLoggedIn) Dest.Tabs.name else Dest.Login.name
+            startDestination = if (isLoggedIn) Dest.ConsultationList.name else Dest.Login.name
         ) {
             composable(Dest.Login.name) {
                 LoginScreen(
@@ -65,8 +65,8 @@ fun App(
                     newPassword = uiState.value.password,
                     onUsernameChanged = { model.updateUsername(it) },
                     onPasswordChanged = { model.updatePassword(it) },
-                    onLogin = {
-                        //model.login()
+                    onSubmit = {
+                        model.checkCredentials()
                     },
                     modifier = Modifier
                         .background(AppConstants.lightGreen)

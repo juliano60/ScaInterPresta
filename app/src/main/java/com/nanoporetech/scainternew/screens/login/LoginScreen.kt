@@ -1,4 +1,4 @@
-package com.nanoporetech.scainternew.presentation.login
+package com.nanoporetech.scainternew.screens.login
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -12,6 +12,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.filled.Person
@@ -26,11 +28,16 @@ import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusDirection
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
@@ -39,7 +46,7 @@ import com.nanoporetech.scainternew.conf.AppConstants
 
 @Composable
 fun LoginScreen(
-    onLogin: () -> Unit,
+    onSubmit: () -> Unit,
     newUsername: String,
     newPassword: String,
     onUsernameChanged: (String) -> Unit,
@@ -83,6 +90,7 @@ fun LoginScreen(
                 password = newPassword,
                 onUsernameChanged = onUsernameChanged,
                 onPasswordChanged = onPasswordChanged,
+                onSubmit = onSubmit,
                 modifier = Modifier
                     .fillMaxWidth()
             )
@@ -97,7 +105,7 @@ fun LoginScreen(
             )
 
             Button(
-                onClick = onLogin,
+                onClick = onSubmit,
                 modifier = Modifier
                     .fillMaxWidth()
             ) {
@@ -144,12 +152,15 @@ fun CredentialsSection(
     password: String,
     onUsernameChanged: (String) -> Unit,
     onPasswordChanged: (String) -> Unit,
+    onSubmit: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Column(
         verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.padding_small)),
         modifier = modifier
     ) {
+        val focusManager = LocalFocusManager.current
+
         OutlinedTextField(
             value = username,
             singleLine = true,
@@ -163,6 +174,11 @@ fun CredentialsSection(
                 disabledContainerColor = MaterialTheme.colorScheme.surface
             ),
             onValueChange = { onUsernameChanged(it) },
+            keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
+            keyboardActions = KeyboardActions(
+                onNext = { focusManager.moveFocus(FocusDirection.Down) }
+            ),
+            visualTransformation = VisualTransformation.None,
             modifier = Modifier
                 .fillMaxWidth()
         )
@@ -178,6 +194,13 @@ fun CredentialsSection(
                 focusedContainerColor = MaterialTheme.colorScheme.surface,
                 unfocusedContainerColor = MaterialTheme.colorScheme.surface,
                 disabledContainerColor = MaterialTheme.colorScheme.surface
+            ),
+            keyboardOptions = KeyboardOptions(
+                imeAction = ImeAction.Done,
+                keyboardType = KeyboardType.Password
+            ),
+            keyboardActions = KeyboardActions(
+                onDone = { onSubmit() },
             ),
             onValueChange = { onPasswordChanged(it) },
             visualTransformation = PasswordVisualTransformation(),
@@ -228,7 +251,7 @@ fun LoginScreenPreview(
     Surface(modifier = Modifier
         .fillMaxSize()) {
         LoginScreen(
-            onLogin = {},
+            onSubmit = {},
             newUsername = "",
             newPassword = "",
             onUsernameChanged = {},

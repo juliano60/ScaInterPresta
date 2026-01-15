@@ -1,4 +1,4 @@
-package com.nanoporetech.scainternew.presentation.hospitalisation
+package com.nanoporetech.scainternew.screens.consultation
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -25,23 +25,21 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
 import com.nanoporetech.scainternew.R
 import com.nanoporetech.scainternew.data.Datasource
-import com.nanoporetech.scainternew.model.Hospitalisation
+import com.nanoporetech.scainternew.model.Consultation
 import com.nanoporetech.scainternew.utils.displayedDateAndTime
 
-
 @Composable
-fun HospitalisationListView(
+fun ConsultationListView(
     modifier: Modifier = Modifier,
-    hospitalisations: List<Hospitalisation> = Datasource().hospitalisations()
+    consultations: List<Consultation> = Datasource().consultations()
 ) {
     Column(modifier =
-    Modifier.fillMaxSize()
+        Modifier.fillMaxSize()
     ) {
-        if (hospitalisations.isEmpty()) {
-            Text(text = "noRecentHospitalisation")
+        if (consultations.isEmpty()) {
+            Text(text = "noRecentConsultation")
         } else {
             LazyColumn(
                 modifier = Modifier
@@ -50,9 +48,9 @@ fun HospitalisationListView(
                     .safeContentPadding()
                     .statusBarsPadding()
             ) {
-                items(hospitalisations) { hospitalisation ->
-                    HospitalisationRowItem(
-                        hospitalisation = hospitalisation,
+                items(consultations) { consultation ->
+                    ConsultationRowItem(
+                        consultation = consultation,
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(dimensionResource(R.dimen.padding_small))
@@ -65,8 +63,8 @@ fun HospitalisationListView(
 }
 
 @Composable
-fun HospitalisationRowItem(
-    hospitalisation: Hospitalisation,
+fun ConsultationRowItem(
+    consultation: Consultation,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -75,27 +73,26 @@ fun HospitalisationRowItem(
     ) {
         Row(verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
-        ) {
-            Icon(
-                Icons.Default.Person,
+            ) {
+            Icon(Icons.Default.Person,
                 contentDescription = null)
 
             Spacer(Modifier.width(dimensionResource(R.dimen.padding_small)))
 
             Text(
-                text = hospitalisation.fullname,
+                text = consultation.fullname,
                 style = MaterialTheme.typography.titleMedium,
                 color = MaterialTheme.colorScheme.onSurface
             )
         }
 
         Text(
-            text = hospitalisation.type,
+            text = consultation.act,
             color = MaterialTheme.colorScheme.onPrimaryContainer
         )
 
         Text(
-            text = displayedDateAndTime(hospitalisation.creationDate),
+            text = displayedDateAndTime(consultation.creationDate),
             color = MaterialTheme.colorScheme.onSurfaceVariant
         )
     }
@@ -103,11 +100,11 @@ fun HospitalisationRowItem(
 
 @Preview
 @Composable
-fun HospitalisationListPreview() {
+fun ConsultationListPreview() {
     Surface(
         modifier = Modifier
             .fillMaxSize()
     ) {
-        //HospitalisationListView()
+        //ConsultationListView()
     }
 }

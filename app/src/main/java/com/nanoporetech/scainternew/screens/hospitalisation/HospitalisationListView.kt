@@ -1,4 +1,4 @@
-package com.nanoporetech.scainternew.presentation.examination
+package com.nanoporetech.scainternew.screens.hospitalisation
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -25,23 +25,22 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
 import com.nanoporetech.scainternew.R
 import com.nanoporetech.scainternew.data.Datasource
-import com.nanoporetech.scainternew.model.Examination
+import com.nanoporetech.scainternew.model.Hospitalisation
 import com.nanoporetech.scainternew.utils.displayedDateAndTime
 
 
 @Composable
-fun ExaminationListView(
+fun HospitalisationListView(
     modifier: Modifier = Modifier,
-    examinations: List<Examination> = Datasource().examinations()
+    hospitalisations: List<Hospitalisation> = Datasource().hospitalisations()
 ) {
     Column(modifier =
     Modifier.fillMaxSize()
     ) {
-        if (examinations.isEmpty()) {
-            Text(text = "noRecentExamination")
+        if (hospitalisations.isEmpty()) {
+            Text(text = "noRecentHospitalisation")
         } else {
             LazyColumn(
                 modifier = Modifier
@@ -50,9 +49,9 @@ fun ExaminationListView(
                     .safeContentPadding()
                     .statusBarsPadding()
             ) {
-                items(examinations) { examination ->
-                    examinationRowItem(
-                        examination = examination,
+                items(hospitalisations) { hospitalisation ->
+                    HospitalisationRowItem(
+                        hospitalisation = hospitalisation,
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(dimensionResource(R.dimen.padding_small))
@@ -65,8 +64,8 @@ fun ExaminationListView(
 }
 
 @Composable
-fun examinationRowItem(
-    examination: Examination,
+fun HospitalisationRowItem(
+    hospitalisation: Hospitalisation,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -83,19 +82,19 @@ fun examinationRowItem(
             Spacer(Modifier.width(dimensionResource(R.dimen.padding_small)))
 
             Text(
-                text = examination.fullname,
+                text = hospitalisation.fullname,
                 style = MaterialTheme.typography.titleMedium,
                 color = MaterialTheme.colorScheme.onSurface
             )
         }
 
         Text(
-            text = examination.displayedReason,
+            text = hospitalisation.type,
             color = MaterialTheme.colorScheme.onPrimaryContainer
         )
 
         Text(
-            text = displayedDateAndTime(examination.creationDate),
+            text = displayedDateAndTime(hospitalisation.creationDate),
             color = MaterialTheme.colorScheme.onSurfaceVariant
         )
     }
@@ -103,11 +102,11 @@ fun examinationRowItem(
 
 @Preview
 @Composable
-fun ExaminationListPreview() {
+fun HospitalisationListPreview() {
     Surface(
         modifier = Modifier
             .fillMaxSize()
     ) {
-        //ExaminationListView()
+        //HospitalisationListView()
     }
 }

@@ -1,4 +1,4 @@
-package com.nanoporetech.scainternew.presentation.consultation
+package com.nanoporetech.scainternew.screens.examination
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -25,22 +25,22 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
 import com.nanoporetech.scainternew.R
 import com.nanoporetech.scainternew.data.Datasource
-import com.nanoporetech.scainternew.model.Consultation
+import com.nanoporetech.scainternew.model.Examination
 import com.nanoporetech.scainternew.utils.displayedDateAndTime
 
+
 @Composable
-fun ConsultationListView(
+fun ExaminationListView(
     modifier: Modifier = Modifier,
-    consultations: List<Consultation> = Datasource().consultations()
+    examinations: List<Examination> = Datasource().examinations()
 ) {
     Column(modifier =
-        Modifier.fillMaxSize()
+    Modifier.fillMaxSize()
     ) {
-        if (consultations.isEmpty()) {
-            Text(text = "noRecentConsultation")
+        if (examinations.isEmpty()) {
+            Text(text = "noRecentExamination")
         } else {
             LazyColumn(
                 modifier = Modifier
@@ -49,9 +49,9 @@ fun ConsultationListView(
                     .safeContentPadding()
                     .statusBarsPadding()
             ) {
-                items(consultations) { consultation ->
-                    ConsultationRowItem(
-                        consultation = consultation,
+                items(examinations) { examination ->
+                    examinationRowItem(
+                        examination = examination,
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(dimensionResource(R.dimen.padding_small))
@@ -64,8 +64,8 @@ fun ConsultationListView(
 }
 
 @Composable
-fun ConsultationRowItem(
-    consultation: Consultation,
+fun examinationRowItem(
+    examination: Examination,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -74,26 +74,27 @@ fun ConsultationRowItem(
     ) {
         Row(verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
-            ) {
-            Icon(Icons.Default.Person,
+        ) {
+            Icon(
+                Icons.Default.Person,
                 contentDescription = null)
 
             Spacer(Modifier.width(dimensionResource(R.dimen.padding_small)))
 
             Text(
-                text = consultation.fullname,
+                text = examination.fullname,
                 style = MaterialTheme.typography.titleMedium,
                 color = MaterialTheme.colorScheme.onSurface
             )
         }
 
         Text(
-            text = consultation.act,
+            text = examination.displayedReason,
             color = MaterialTheme.colorScheme.onPrimaryContainer
         )
 
         Text(
-            text = displayedDateAndTime(consultation.creationDate),
+            text = displayedDateAndTime(examination.creationDate),
             color = MaterialTheme.colorScheme.onSurfaceVariant
         )
     }
@@ -101,11 +102,11 @@ fun ConsultationRowItem(
 
 @Preview
 @Composable
-fun ConsultationListPreview() {
+fun ExaminationListPreview() {
     Surface(
         modifier = Modifier
             .fillMaxSize()
     ) {
-        //ConsultationListView()
+        //ExaminationListView()
     }
 }
