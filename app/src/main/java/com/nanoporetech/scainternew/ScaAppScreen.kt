@@ -20,6 +20,7 @@ import com.nanoporetech.scainternew.conf.AppConstants
 import com.nanoporetech.scainternew.screens.consultation.ConsultationListView
 import com.nanoporetech.scainternew.screens.examination.ExaminationListView
 import com.nanoporetech.scainternew.screens.hospitalisation.HospitalisationListView
+import com.nanoporetech.scainternew.screens.login.ForgottenPasswordScreen
 import com.nanoporetech.scainternew.screens.login.LoginScreen
 
 enum class Dest {
@@ -37,55 +38,55 @@ fun App(
     navHostController: NavHostController = rememberNavController()
 ) {
     val uiState = model.uiState.collectAsState()
-
     val isLoggedIn = uiState.value.isLoggedIn
-    val target = if (isLoggedIn) Dest.ConsultationList.name else Dest.Login.name
     val backStackEntry by navHostController.currentBackStackEntryAsState()
-    val currentRoute = backStackEntry?.destination?.route
 
-    LaunchedEffect(target, currentRoute) {
-        if (currentRoute != null && currentRoute != target) {
-            navHostController.navigate(target) {
-                launchSingleTop = true
-                popUpTo(navHostController.graph.id) { inclusive = true }
-            }
+    LaunchedEffect(isLoggedIn) {
+        val dest = if (isLoggedIn) Dest.ConsultationList.name else Dest.Login.name
+        navHostController.navigate(dest) {
+            launchSingleTop = true
+            popUpTo(navHostController.graph.id) { inclusive = true }
         }
     }
 
-    Scaffold(
-
-    ) { innerPadding ->
-        NavHost(
-            navController = navHostController,
-            startDestination = if (isLoggedIn) Dest.ConsultationList.name else Dest.Login.name
-        ) {
-            composable(Dest.Login.name) {
-                LoginScreen(
-                    newUsername = uiState.value.username,
-                    newPassword = uiState.value.password,
-                    onUsernameChanged = { model.updateUsername(it) },
-                    onPasswordChanged = { model.updatePassword(it) },
-                    onSubmit = {
-                        model.checkCredentials()
-                    },
-                    modifier = Modifier
-                        .background(AppConstants.lightGreen)
-                        .fillMaxSize()
-                        .padding(dimensionResource(R.dimen.padding_medium))
-                )
-            }
-            composable(Dest.ConsultationList.name) {
-                ConsultationListView(
-                )
-            }
-            composable(Dest.ExaminationList.name) {
-                ExaminationListView(
-                )
-            }
-            composable(Dest.HospitalisationList.name) {
-                HospitalisationListView(
-                )
-            }
+    NavHost(
+        navController = navHostController,
+        startDestination = if (isLoggedIn) Dest.ConsultationList.name else Dest.Login.name
+    ) {
+        composable(Dest.Login.name) {
+            LoginScreen(
+                newUsername = uiState.value.username,
+                newPassword = uiState.value.password,
+                onUsernameChanged = { model.updateUsername(it) },
+                onPasswordChanged = { model.updatePassword(it) },
+                onSubmit = {
+                    model.checkCredentials()
+                },
+                onForgottenPassword = { navHostController.navigate(Dest.ForgotPassword.name) },
+                modifier = Modifier
+                    .background(AppConstants.lightGreen)
+                    .fillMaxSize()
+                    .padding(dimensionResource(R.dimen.padding_medium))
+            )
+        }
+        composable(Dest.ConsultationList.name) {
+            ConsultationListView(
+            )
+        }
+        composable(Dest.ExaminationList.name) {
+            ExaminationListView(
+            )
+        }
+        composable(Dest.HospitalisationList.name) {
+            HospitalisationListView(
+            )
+        }
+        composable(Dest.ForgotPassword.name) {
+            ForgottenPasswordScreen(
+                onBack = {
+                    navHostController.popBackStack()
+                }
+            )
         }
     }
 }
