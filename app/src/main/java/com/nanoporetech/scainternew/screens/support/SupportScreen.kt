@@ -1,4 +1,4 @@
-package com.nanoporetech.scainternew.screens.login
+package com.nanoporetech.scainternew.screens.support
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.outlined.HeadsetMic
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -30,7 +29,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import com.nanoporetech.scainternew.R
@@ -43,37 +41,35 @@ import compose.icons.fontawesomeicons.brands.Whatsapp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ForgottenPasswordScreen(
+fun SupportScreen(
     modifier: Modifier = Modifier,
-    onBack: () -> Unit = {},
+    onBack: () -> Unit = {}
 ) {
-    Scaffold(
+    Scaffold (
         topBar = {
-            ScaTopAppBar(
-                onBack = onBack
-            )
+            SupportTopAppBar(onBack = onBack)
         },
         containerColor = AppConstants.lightGreen
-    ) {  innerPadding ->
+    ) { innerPadding ->
 
         Box(
-            modifier = modifier
-                .padding(innerPadding)
+            modifier = modifier.padding(innerPadding)
         ) {
             Card(
-                elevation = CardDefaults.cardElevation(defaultElevation = dimensionResource(R.dimen.card_elevation)),
-                colors = CardDefaults.cardColors(
-                    containerColor = Color.White
+                elevation = CardDefaults.cardElevation(
+                    defaultElevation = dimensionResource(R.dimen.card_elevation)
                 ),
+                colors = CardDefaults.cardColors(containerColor = Color.White),
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(dimensionResource(R.dimen.padding_medium))
             ) {
                 Column(
                     modifier = Modifier.padding(dimensionResource(R.dimen.padding_medium)),
-                    verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.padding_medium))
+                    verticalArrangement = Arrangement.spacedBy(
+                        dimensionResource(R.dimen.padding_medium)
+                    )
                 ) {
-
                     CardHeader(
                         title = stringResource(R.string.sca_technical_support),
                         modifier = Modifier.fillMaxWidth()
@@ -87,7 +83,8 @@ fun ForgottenPasswordScreen(
 
                     Text(
                         text = stringResource(R.string.contact_hours),
-                        color = MaterialTheme.colorScheme.primary)
+                        color = MaterialTheme.colorScheme.primary
+                    )
 
                     Row(
                         modifier = Modifier.fillMaxWidth(),
@@ -97,13 +94,14 @@ fun ForgottenPasswordScreen(
                             imageVector = FontAwesomeIcons.Brands.Whatsapp,
                             contentDescription = null,
                             modifier = Modifier.size(dimensionResource(R.dimen.icon_small)),
-                            tint = Color(0xFF2E7D32) // green
+                            tint = Color(0xFF2E7D32)
                         )
                         Spacer(modifier = Modifier.width(dimensionResource(R.dimen.padding_small)))
                         Text(
-                            "(+225) 0722446688",
+                            text = "(+225) 0722446688",
                             color = MaterialTheme.colorScheme.primary
-                            )
+                        )
+                        Spacer(modifier = Modifier.weight(1f))
                     }
                 }
             }
@@ -113,20 +111,19 @@ fun ForgottenPasswordScreen(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ScaTopAppBar(
+private fun SupportTopAppBar(
     modifier: Modifier = Modifier,
     onBack: () -> Unit
 ) {
     CenterAlignedTopAppBar(
+        modifier = modifier,
         title = {
-            Text(
-                text = stringResource(R.string.forgotten_password_title)
-            )
+            Text(text = stringResource(R.string.support_title))
         },
         navigationIcon = {
             IconButton(onClick = onBack) {
                 Icon(
-                    Icons.AutoMirrored.Filled.ArrowBack,
+                    imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                     contentDescription = null
                 )
             }
@@ -139,18 +136,15 @@ fun ScaTopAppBar(
     )
 }
 
-
 @Preview
 @Composable
-fun ForgottenPasswordScreenPreview() {
+fun SupportScreenPreview() {
     ScaInterNewTheme {
         Surface(
             modifier = Modifier
-                .fillMaxSize()
-        ) {
-            ForgottenPasswordScreen(
-                modifier = Modifier
-                    .fillMaxSize()
+                .fillMaxSize()) {
+            SupportScreen(
+                modifier = Modifier.fillMaxSize()
             )
         }
     }

@@ -14,4 +14,6 @@
     <string name="home">Accueil</string>
     <string name="support_title">Aide et assistance</string>
     <string name="dummy_title">Welcome</string>
+    <string name="logout">Se déconnecter</string>
+    <string name="health_care">Centre de Santé</string>
 </resources>

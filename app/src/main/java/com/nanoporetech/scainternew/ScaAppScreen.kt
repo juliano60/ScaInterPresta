@@ -91,6 +91,12 @@ fun App(
         composable(Dest.Tabs.name) {
             AppTabScreen(
                 isLoggedIn = isLoggedIn,
+                onBack = {
+                    navHostController.popBackStack()
+                },
+                onLogout = {
+                    model.logout()
+                },
                 onShowLogin = {
                     LoginScreen(
                         newUsername = uiState.value.username,

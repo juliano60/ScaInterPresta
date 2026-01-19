@@ -1,18 +1,20 @@
 package com.nanoporetech.scainternew
 
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.HelpOutline
-import androidx.compose.material.icons.outlined.Help
-import androidx.compose.material.icons.outlined.HelpOutline
+import androidx.compose.material.icons.automirrored.outlined.Logout
 import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
-import androidx.compose.material3.LargeTopAppBar
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -20,27 +22,37 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.nanoporetech.scainternew.screens.support.SupportScreen
+import com.nanoporetech.scainternew.ui.theme.ScaInterNewTheme
 
 @Composable
 fun AppTabScreen(
     isLoggedIn: Boolean,
+    onLogout: () -> Unit,
+    onBack: () -> Unit,
     onShowLogin: @Composable () -> Unit = { DummyScreen() },
 ) {
     if (isLoggedIn) {
-        LoggedInTabs()
+        LoggedInTabs(
+            onBack = onBack,
+            onLogout = onLogout
+        )
     } else {
         onShowLogin()
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun LoggedInTabs() {
+private fun LoggedInTabs(
+    onBack: () -> Unit,
+    onLogout: () -> Unit
+) {
     val navController = rememberNavController()
 
     // Bottom tabs
@@ -62,7 +74,9 @@ private fun LoggedInTabs() {
 
     Scaffold(
         topBar = {
-            AppTopBar()
+            AppTopBar(
+                onLogout = onLogout
+            )
         },
         bottomBar = {
             NavigationBar {
@@ -91,7 +105,9 @@ private fun LoggedInTabs() {
             modifier = Modifier.padding(innerPadding)
         ) {
             composable("home") { HomeViewHealthCare() }
-            composable("support") { SupportView() }
+            composable("support") { SupportScreen(
+                onBack = onBack
+            ) }
         }
     }
 }
@@ -99,10 +115,19 @@ private fun LoggedInTabs() {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AppTopBar(
+    onLogout: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    LargeTopAppBar(
-        title = { Text(stringResource(R.string.dummy_title)) },
+    TopAppBar(
+        title = { Text(stringResource(R.string.health_care)) },
+        actions = {
+            IconButton(onClick = { onLogout() }) {
+                Icon(
+                    imageVector = Icons.AutoMirrored.Outlined.Logout,
+                    contentDescription = stringResource(R.string.logout)
+                )
+            }
+        },
         colors = TopAppBarDefaults.largeTopAppBarColors(
             containerColor = Color.Black,
             titleContentColor = Color.White,
@@ -120,5 +145,21 @@ private data class TabSpec(
 
 /** Screens placeholders */
 @Composable fun HomeViewHealthCare() { /* ... */ }
-@Composable fun SupportView() { /* ... */ }
 @Composable fun DummyScreen() { /* ... */ }
+
+@Preview
+@Composable
+fun AppTabScreenPreview() {
+    ScaInterNewTheme {
+        Surface(
+            modifier = Modifier
+                .fillMaxSize()
+        ) {
+            AppTabScreen(
+                isLoggedIn = true,
+                onBack = {},
+                onLogout = {},
+            )
+        }
+    }
+}
