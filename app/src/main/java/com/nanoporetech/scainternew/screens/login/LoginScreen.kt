@@ -43,6 +43,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import com.nanoporetech.scainternew.R
 import com.nanoporetech.scainternew.conf.AppConstants
+import com.nanoporetech.scainternew.ui.theme.ScaInterNewTheme
 
 @Composable
 fun LoginScreen(
@@ -248,18 +249,22 @@ fun ForgottenPasswordSection(
 @Composable
 fun LoginScreenPreview(
 ) {
-    Surface(modifier = Modifier
-        .fillMaxSize()) {
-        LoginScreen(
-            onSubmit = {},
-            newUsername = "",
-            newPassword = "",
-            onUsernameChanged = {},
-            onPasswordChanged = {},
+    ScaInterNewTheme {
+        Surface(
             modifier = Modifier
-                .background(AppConstants.lightGreen)
                 .fillMaxSize()
-                .padding(dimensionResource(R.dimen.padding_medium))
-        )
+        ) {
+            LoginScreen(
+                onSubmit = {},
+                newUsername = "",
+                newPassword = "",
+                onUsernameChanged = {},
+                onPasswordChanged = {},
+                modifier = Modifier
+                    .background(AppConstants.lightGreen)
+                    .fillMaxSize()
+                    .padding(dimensionResource(R.dimen.padding_medium))
+            )
+        }
     }
 }

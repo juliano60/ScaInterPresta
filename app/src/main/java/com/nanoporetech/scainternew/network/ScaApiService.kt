@@ -1,7 +1,6 @@
 package com.nanoporetech.scainternew.network
 
 import com.google.gson.GsonBuilder
-import com.nanoporetech.scainternew.model.FetchProviderRequest
 import com.nanoporetech.scainternew.model.Provider
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

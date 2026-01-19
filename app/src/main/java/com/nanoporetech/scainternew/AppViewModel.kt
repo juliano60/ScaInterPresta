@@ -6,7 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.nanoporetech.scainternew.network.Credentials
 import com.nanoporetech.scainternew.network.ScaApi
 import com.nanoporetech.scainternew.model.AppUiState
-import com.nanoporetech.scainternew.model.FetchProviderRequest
+import com.nanoporetech.scainternew.network.FetchProviderRequest
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
