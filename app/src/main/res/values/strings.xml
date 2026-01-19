@@ -11,4 +11,7 @@
     <string name="forgotten_password_text">Veuillez utiliser le numero WhatsApp ci-dessous afin de contacter l\'équipe de support technique.</string>
     <string name="contact_hours">Lundi au Vendredi de 08h00 à 18h00</string>
     <string name="sca_technical_support">SCA Inter A Support Technique</string>
+    <string name="home">Accueil</string>
+    <string name="support_title">Aide et assistance</string>
+    <string name="dummy_title">Welcome</string>
 </resources>

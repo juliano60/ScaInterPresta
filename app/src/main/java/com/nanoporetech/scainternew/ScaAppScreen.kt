@@ -42,7 +42,7 @@ fun App(
     val backStackEntry by navHostController.currentBackStackEntryAsState()
 
     LaunchedEffect(isLoggedIn) {
-        val dest = if (isLoggedIn) Dest.ConsultationList.name else Dest.Login.name
+        val dest = if (isLoggedIn) Dest.Tabs.name else Dest.Login.name
         navHostController.navigate(dest) {
             launchSingleTop = true
             popUpTo(navHostController.graph.id) { inclusive = true }
@@ -86,6 +86,27 @@ fun App(
                 onBack = {
                     navHostController.popBackStack()
                 }
+            )
+        }
+        composable(Dest.Tabs.name) {
+            AppTabScreen(
+                isLoggedIn = isLoggedIn,
+                onShowLogin = {
+                    LoginScreen(
+                        newUsername = uiState.value.username,
+                        newPassword = uiState.value.password,
+                        onUsernameChanged = { model.updateUsername(it) },
+                        onPasswordChanged = { model.updatePassword(it) },
+                        onSubmit = {
+                            model.checkCredentials()
+                        },
+                        onForgottenPassword = { navHostController.navigate(Dest.ForgotPassword.name) },
+                        modifier = Modifier
+                            .background(AppConstants.lightGreen)
+                            .fillMaxSize()
+                            .padding(dimensionResource(R.dimen.padding_medium))
+                    )
+                },
             )
         }
     }
