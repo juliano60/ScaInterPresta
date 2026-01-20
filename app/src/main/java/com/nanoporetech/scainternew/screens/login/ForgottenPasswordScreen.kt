@@ -76,6 +76,8 @@ fun ForgottenPasswordScreen(
 
                     CardHeader(
                         title = stringResource(R.string.sca_technical_support),
+                        iconImg = Icons.Outlined.HeadsetMic,
+                        color = MaterialTheme.colorScheme.primary,
                         modifier = Modifier.fillMaxWidth()
                     )
 

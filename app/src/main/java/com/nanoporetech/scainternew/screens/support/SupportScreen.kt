@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.outlined.HeadsetMic
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -72,6 +73,7 @@ fun SupportScreen(
                 ) {
                     CardHeader(
                         title = stringResource(R.string.sca_technical_support),
+                        iconImg = Icons.Outlined.HeadsetMic,
                         modifier = Modifier.fillMaxWidth()
                     )
 

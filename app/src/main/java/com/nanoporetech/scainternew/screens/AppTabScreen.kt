@@ -1,5 +1,6 @@
-package com.nanoporetech.scainternew
+package com.nanoporetech.scainternew.screens
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
@@ -21,6 +22,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavGraph.Companion.findStartDestination
@@ -28,6 +30,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.nanoporetech.scainternew.HealthCareScreen
+import com.nanoporetech.scainternew.R
+import com.nanoporetech.scainternew.conf.AppConstants
 import com.nanoporetech.scainternew.screens.support.SupportScreen
 import com.nanoporetech.scainternew.ui.theme.ScaInterNewTheme
 
@@ -104,7 +109,11 @@ private fun LoggedInTabs(
             startDestination = tabs.first().route,
             modifier = Modifier.padding(innerPadding)
         ) {
-            composable("home") { HomeViewHealthCare() }
+            composable("home") { HealthCareScreen(
+                modifier = Modifier
+                    .background(color = AppConstants.lightGreen)
+                    .padding(dimensionResource(R.dimen.padding_medium))
+            ) }
             composable("support") { SupportScreen(
                 onBack = onBack
             ) }
@@ -144,7 +153,6 @@ private data class TabSpec(
 )
 
 /** Screens placeholders */
-@Composable fun HomeViewHealthCare() { /* ... */ }
 @Composable fun DummyScreen() { /* ... */ }
 
 @Preview

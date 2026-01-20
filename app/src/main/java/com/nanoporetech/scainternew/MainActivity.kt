@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import com.nanoporetech.scainternew.screens.App
 import com.nanoporetech.scainternew.ui.theme.ScaInterNewTheme
 
 class MainActivity : ComponentActivity() {

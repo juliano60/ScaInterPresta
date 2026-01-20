@@ -2,6 +2,7 @@ package com.nanoporetech.scainternew.utils
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.HeadsetMic
@@ -10,6 +11,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.text.font.FontWeight
 import com.nanoporetech.scainternew.R
@@ -17,22 +20,24 @@ import com.nanoporetech.scainternew.R
 @Composable
 fun CardHeader(
     title: String,
-    modifier: Modifier = Modifier
+    iconImg: ImageVector,
+    modifier: Modifier = Modifier,
+    color: Color = MaterialTheme.colorScheme.onPrimaryContainer,
 ) {
-
     Row(
         modifier = modifier,
     ) {
         Icon(
-            imageVector = Icons.Outlined.HeadsetMic,
+            imageVector = iconImg,
             contentDescription = null,
-            tint = MaterialTheme.colorScheme.primary
+            tint = color,
+            modifier = Modifier.size(dimensionResource(R.dimen.icon_small))
         )
         Spacer(modifier = Modifier.width(dimensionResource(R.dimen.padding_small)))
         Text(
             text = title,
-            style = MaterialTheme.typography.titleMedium,
-            color = MaterialTheme.colorScheme.primary,
+            style = MaterialTheme.typography.titleLarge,
+            color = color,
             fontWeight = FontWeight.Bold
         )
     }

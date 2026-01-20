@@ -16,4 +16,16 @@
     <string name="dummy_title">Welcome</string>
     <string name="logout">Se déconnecter</string>
     <string name="health_care">Centre de Santé</string>
+    <string name="welcome_header">Bienvenue, %s</string>
+    <string name="dashboard">Tableau de Bord</string>
+    <string name="consultation_menu_title">Mes consultations</string>
+    <string name="new_care_sheet">Etablir une feuille de soins</string>
+    <string name="view_care_sheet">Voir mes feuilles de soins</string>
+    <string name="examination_menu_title">Mes examens</string>
+    <string name="view_examinations">Voir mes examens</string>
+    <string name="new_examination">Etablir un examen</string>
+    <string name="hospitalisation_menu_title">Mes hospitalisations</string>
+    <string name="new_hospitalisation">Etablir une hospitalisation</string>
+    <string name="view_hospitalisations">Voir mes hospitalisations</string>
+
 </resources>
