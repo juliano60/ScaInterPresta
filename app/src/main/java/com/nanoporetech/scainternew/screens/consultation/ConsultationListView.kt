@@ -33,7 +33,7 @@ import com.nanoporetech.scainternew.utils.displayedDateAndTime
 @Composable
 fun ConsultationListView(
     modifier: Modifier = Modifier,
-    consultations: List<Consultation> = Datasource().consultations()
+    consultations: List<Consultation> = Datasource.consultations()
 ) {
     Column(modifier =
         Modifier.fillMaxSize()

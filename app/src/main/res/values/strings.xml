@@ -27,5 +27,14 @@
     <string name="hospitalisation_menu_title">Mes hospitalisations</string>
     <string name="new_hospitalisation">Etablir une hospitalisation</string>
     <string name="view_hospitalisations">Voir mes hospitalisations</string>
+    <string name="profile_image">Profile image</string>
+    <string name="consultation_info_title">Consultation</string>
+    <string name="act_label">Acte:</string>
+    <string name="date_label">Date:</string>
+    <string name="coverage_label">Couverture:</string>
+    <string name="total_cost_title">Montants</string>
+    <string name="total_cost_label">Total:</string>
+    <string name="total_sca_label">Total SCA:</string>
+    <string name="total_holder_label">Total Assuré:</string>
 
 </resources>

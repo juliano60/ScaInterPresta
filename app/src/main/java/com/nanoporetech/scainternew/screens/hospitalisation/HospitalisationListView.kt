@@ -34,7 +34,7 @@ import com.nanoporetech.scainternew.utils.displayedDateAndTime
 @Composable
 fun HospitalisationListView(
     modifier: Modifier = Modifier,
-    hospitalisations: List<Hospitalisation> = Datasource().hospitalisations()
+    hospitalisations: List<Hospitalisation> = Datasource.hospitalisations()
 ) {
     Column(modifier =
     Modifier.fillMaxSize()

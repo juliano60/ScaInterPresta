@@ -4,7 +4,7 @@ import com.nanoporetech.scainternew.model.Consultation
 import com.nanoporetech.scainternew.model.Examination
 import com.nanoporetech.scainternew.model.Hospitalisation
 
-class Datasource {
+object Datasource {
     fun hospitalisations(): List<Hospitalisation> = listOf (
         Hospitalisation(
             id = 9139,

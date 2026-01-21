@@ -34,7 +34,7 @@ import com.nanoporetech.scainternew.utils.displayedDateAndTime
 @Composable
 fun ExaminationListView(
     modifier: Modifier = Modifier,
-    examinations: List<Examination> = Datasource().examinations()
+    examinations: List<Examination> = Datasource.examinations()
 ) {
     Column(modifier =
     Modifier.fillMaxSize()

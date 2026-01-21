@@ -18,6 +18,8 @@ import androidx.navigation.compose.rememberNavController
 import com.nanoporetech.scainternew.AppViewModel
 import com.nanoporetech.scainternew.R
 import com.nanoporetech.scainternew.conf.AppConstants
+import com.nanoporetech.scainternew.data.Datasource
+import com.nanoporetech.scainternew.screens.consultation.ConsultationDetailScreen
 import com.nanoporetech.scainternew.screens.consultation.ConsultationListView
 import com.nanoporetech.scainternew.screens.examination.ExaminationListView
 import com.nanoporetech.scainternew.screens.hospitalisation.HospitalisationListView
@@ -30,7 +32,8 @@ enum class Dest {
     ExaminationList,
     HospitalisationList,
     ForgotPassword,
-    Tabs
+    Tabs,
+    ConsultationDetailView,
 }
 
 @Composable
@@ -43,7 +46,8 @@ fun App(
     val backStackEntry by navHostController.currentBackStackEntryAsState()
 
     LaunchedEffect(isLoggedIn) {
-        val dest = if (isLoggedIn) Dest.Tabs.name else Dest.Login.name
+        //val dest = if (isLoggedIn) Dest.Tabs.name else Dest.Login.name
+        val dest = Dest.ConsultationDetailView.name
         navHostController.navigate(dest) {
             launchSingleTop = true
             popUpTo(navHostController.graph.id) { inclusive = true }
@@ -52,7 +56,8 @@ fun App(
 
     NavHost(
         navController = navHostController,
-        startDestination = if (isLoggedIn) Dest.ConsultationList.name else Dest.Login.name
+        //startDestination = if (isLoggedIn) Dest.ConsultationList.name else Dest.Login.names
+        startDestination = Dest.ConsultationDetailView.name
     ) {
         composable(Dest.Login.name) {
             LoginScreen(
@@ -72,21 +77,36 @@ fun App(
         }
         composable(Dest.ConsultationList.name) {
             ConsultationListView(
+                modifier = Modifier
+                    .padding(dimensionResource(R.dimen.padding_medium))
             )
         }
         composable(Dest.ExaminationList.name) {
             ExaminationListView(
+                modifier = Modifier
+                    .padding(dimensionResource(R.dimen.padding_medium))
             )
         }
         composable(Dest.HospitalisationList.name) {
             HospitalisationListView(
+                modifier = Modifier
+                    .padding(dimensionResource(R.dimen.padding_medium))
             )
         }
         composable(Dest.ForgotPassword.name) {
             ForgottenPasswordScreen(
                 onBack = {
                     navHostController.popBackStack()
-                }
+                },
+                modifier = Modifier
+                    .padding(dimensionResource(R.dimen.padding_medium))
+            )
+        }
+        composable(Dest.ConsultationDetailView.name) {
+            ConsultationDetailScreen(
+                consultation = Datasource.consultations().first(),
+                modifier = Modifier
+                    .padding(dimensionResource(R.dimen.padding_medium))
             )
         }
         composable(Dest.Tabs.name) {

@@ -54,7 +54,9 @@ dependencies {
     implementation(libs.androidx.navigation.runtime.android)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.material.icons.extended)
+    implementation(libs.material.icons.extended)
     implementation(libs.font.awesome)
+    implementation(libs.coil.compose)
 
     // Retrofit
     implementation (libs.retrofit)

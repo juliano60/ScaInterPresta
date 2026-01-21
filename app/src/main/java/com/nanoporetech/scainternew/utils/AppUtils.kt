@@ -2,32 +2,55 @@ package com.nanoporetech.scainternew.utils
 
 import android.os.Build
 import androidx.annotation.RequiresApi
+import java.time.Instant
 import java.time.OffsetDateTime
+import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
+import java.util.Date
 import java.util.Locale
 
-@RequiresApi(Build.VERSION_CODES.O)
 fun displayedDateAndTime(date: String): String {
-    return try {
-        val parsed = OffsetDateTime.parse(date)
-        formatDate(parsed, timeStyle = FormatStyle.SHORT)
-    } catch (e: Exception) {
+    val instant = dateFromISOString(date)
+    return if (instant != null) {
+        formatDate(instant, timeStyle = FormatStyle.SHORT)
+    } else {
         "Unknown date"
     }
 }
 
-@RequiresApi(Build.VERSION_CODES.O)
+fun displayedDate(date: String): String {
+    val parsed = dateFromISOString(date)
+    return if (parsed != null) {
+        formatDate(parsed)
+    } else {
+        "Unknown date"
+    }
+}
+
+fun dateFromISOString(input: String): Instant? {
+    return try {
+        Instant.parse(input)
+    } catch (e: Exception) {
+        null
+    }
+}
+
 fun formatDate(
-    date: OffsetDateTime,
+    instant: Instant,
     dateStyle: FormatStyle = FormatStyle.MEDIUM,
-    timeStyle: FormatStyle? = null
+    timeStyle: FormatStyle? = null,
+    zoneId: ZoneId = ZoneId.systemDefault(),
+    locale: Locale = Locale.getDefault()
 ): String {
     val formatter = if (timeStyle != null) {
         DateTimeFormatter.ofLocalizedDateTime(dateStyle, timeStyle)
     } else {
         DateTimeFormatter.ofLocalizedDate(dateStyle)
-    }.withLocale(Locale.getDefault())
+    }
 
-    return formatter.format(date)
+    return formatter
+        .withLocale(locale)
+        .withZone(zoneId)
+        .format(instant)
 }
