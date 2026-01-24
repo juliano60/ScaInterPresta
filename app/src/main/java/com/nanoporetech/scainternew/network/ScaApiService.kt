@@ -4,6 +4,7 @@ import com.google.gson.GsonBuilder
 import com.nanoporetech.scainternew.model.Provider
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Body
@@ -27,7 +28,7 @@ private val retrofit = Retrofit.Builder()
 
 interface ScaApiService {
     @POST("provider_api.php")
-    suspend fun loginProvider(@Body request: FetchProviderRequest): Provider?
+    suspend fun loginProvider(@Body request: FetchProviderRequest): Response<Provider>
 }
 
 object ScaApi {

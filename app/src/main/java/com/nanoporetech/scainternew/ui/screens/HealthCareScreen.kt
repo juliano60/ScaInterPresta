@@ -1,4 +1,4 @@
-package com.nanoporetech.scainternew
+package com.nanoporetech.scainternew.ui.screens
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.Assignment
 import androidx.compose.material.icons.filled.Bed
-import androidx.compose.material.icons.outlined.Assignment
 import androidx.compose.material.icons.outlined.GraphicEq
 import androidx.compose.material.icons.outlined.MonitorHeart
 import androidx.compose.material.icons.outlined.Search
@@ -30,7 +29,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
+import com.nanoporetech.scainternew.R
 import com.nanoporetech.scainternew.conf.AppConstants
 import com.nanoporetech.scainternew.ui.theme.ScaInterNewTheme
 import com.nanoporetech.scainternew.utils.CardHeader

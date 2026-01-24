@@ -1,6 +1,7 @@
 package com.nanoporetech.scainternew.screens.login
 
 import android.util.Log
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.LocalIndication
 import androidx.compose.foundation.background
@@ -56,6 +57,7 @@ fun LoginScreen(
     onSubmit: () -> Unit,
     newUsername: String,
     newPassword: String,
+    isLoginInvalid: Boolean,
     onUsernameChanged: (String) -> Unit,
     onPasswordChanged: (String) -> Unit,
     onForgottenPassword: () -> Unit,
@@ -99,6 +101,7 @@ fun LoginScreen(
                 onUsernameChanged = onUsernameChanged,
                 onPasswordChanged = onPasswordChanged,
                 onSubmit = onSubmit,
+                isLoginInvalid = isLoginInvalid,
                 modifier = Modifier
                     .fillMaxWidth()
             )
@@ -113,8 +116,10 @@ fun LoginScreen(
                     .padding(vertical = dimensionResource(R.dimen.padding_medium))
             )
 
+            // LOGIN BUTTON AREA
             Button(
                 onClick = onSubmit,
+                enabled = isFormFilledIn(newUsername, newPassword),
                 modifier = Modifier
                     .fillMaxWidth()
             ) {
@@ -128,6 +133,13 @@ fun LoginScreen(
     }
 }
 
+private fun isFormFilledIn(
+    newUsername: String,
+    newPassword: String
+) : Boolean {
+    return newUsername.isNotBlank() &&
+            newPassword.isNotBlank()
+}
 
 @Composable
 fun HeaderAndLogo(
@@ -162,6 +174,7 @@ fun CredentialsSection(
     onUsernameChanged: (String) -> Unit,
     onPasswordChanged: (String) -> Unit,
     onSubmit: () -> Unit,
+    isLoginInvalid: Boolean,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -188,6 +201,7 @@ fun CredentialsSection(
                 onNext = { focusManager.moveFocus(FocusDirection.Down) }
             ),
             visualTransformation = VisualTransformation.None,
+            isError = isLoginInvalid,
             modifier = Modifier
                 .fillMaxWidth()
         )
@@ -213,6 +227,7 @@ fun CredentialsSection(
             ),
             onValueChange = { onPasswordChanged(it) },
             visualTransformation = PasswordVisualTransformation(),
+            isError = isLoginInvalid,
             modifier = Modifier
                 .fillMaxWidth(),
         )
@@ -278,6 +293,7 @@ fun LoginScreenPreview(
                 onSubmit = {},
                 newUsername = "",
                 newPassword = "",
+                isLoginInvalid = false,
                 onUsernameChanged = {},
                 onPasswordChanged = {},
                 onForgottenPassword = {},

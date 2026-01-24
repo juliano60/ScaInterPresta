@@ -30,10 +30,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.nanoporetech.scainternew.HealthCareScreen
 import com.nanoporetech.scainternew.R
 import com.nanoporetech.scainternew.conf.AppConstants
 import com.nanoporetech.scainternew.screens.support.SupportScreen
+import com.nanoporetech.scainternew.ui.screens.HealthCareScreen
 import com.nanoporetech.scainternew.ui.theme.ScaInterNewTheme
 
 @Composable
