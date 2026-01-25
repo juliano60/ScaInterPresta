@@ -35,7 +35,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.nanoporetech.scainternew.R
 import com.nanoporetech.scainternew.conf.AppConstants
 import com.nanoporetech.scainternew.ui.theme.ScaInterNewTheme
-import com.nanoporetech.scainternew.utils.CardHeader
+import com.nanoporetech.scainternew.ui.utils.CardHeader
 import compose.icons.FontAwesomeIcons
 import compose.icons.fontawesomeicons.Brands
 import compose.icons.fontawesomeicons.brands.Whatsapp
@@ -120,7 +120,7 @@ private fun SupportTopAppBar(
     CenterAlignedTopAppBar(
         modifier = modifier,
         title = {
-            Text(text = stringResource(R.string.support_title))
+            Text(text = stringResource(R.string.page_support))
         },
         navigationIcon = {
             IconButton(onClick = onBack) {

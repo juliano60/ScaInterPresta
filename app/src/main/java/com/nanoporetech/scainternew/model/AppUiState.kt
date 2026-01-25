@@ -8,5 +8,5 @@ data class AppUiState(
     /** username is the username value entered by the user **/
     val username: String = "",
     /** username is the password value entered by the user **/
-    val password: String = ""
+    val password: String = "",
 )

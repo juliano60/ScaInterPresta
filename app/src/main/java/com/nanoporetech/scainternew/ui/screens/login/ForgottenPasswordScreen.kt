@@ -30,13 +30,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import com.nanoporetech.scainternew.R
 import com.nanoporetech.scainternew.conf.AppConstants
 import com.nanoporetech.scainternew.ui.theme.ScaInterNewTheme
-import com.nanoporetech.scainternew.utils.CardHeader
+import com.nanoporetech.scainternew.ui.utils.CardHeader
 import compose.icons.FontAwesomeIcons
 import compose.icons.fontawesomeicons.Brands
 import compose.icons.fontawesomeicons.brands.Whatsapp

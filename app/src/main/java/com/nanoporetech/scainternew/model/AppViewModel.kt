@@ -1,12 +1,12 @@
-package com.nanoporetech.scainternew
+package com.nanoporetech.scainternew.model
 
 import android.util.Log
 import androidx.annotation.StringRes
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.nanoporetech.scainternew.R
 import com.nanoporetech.scainternew.network.Credentials
 import com.nanoporetech.scainternew.network.ScaApi
-import com.nanoporetech.scainternew.model.AppUiState
 import com.nanoporetech.scainternew.network.FetchProviderRequest
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow

@@ -33,18 +33,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import coil.compose.AsyncImage
 import coil.compose.SubcomposeAsyncImage
 import com.nanoporetech.scainternew.R
 import com.nanoporetech.scainternew.conf.AppConstants
 import com.nanoporetech.scainternew.data.Datasource
 import com.nanoporetech.scainternew.model.Consultation
 import com.nanoporetech.scainternew.model.imageUrl
-import com.nanoporetech.scainternew.screens.App
 import com.nanoporetech.scainternew.ui.theme.ScaInterNewTheme
-import com.nanoporetech.scainternew.utils.CardHeader
+import com.nanoporetech.scainternew.ui.utils.CardHeader
 import com.nanoporetech.scainternew.utils.displayedDate
 import com.nanoporetech.scainternew.utils.displayedDateAndTime
 

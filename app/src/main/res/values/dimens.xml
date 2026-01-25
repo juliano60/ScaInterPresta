@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="button_width">250dp</dimen>
+    <dimen name="card_elevation">5dp</dimen>
+    <dimen name="drawer_width">240dp</dimen>
+    <dimen name="drawer_padding_content">12dp</dimen>
+    <dimen name="icon_small">32dp</dimen>
+    <dimen name="icon_medium">48dp</dimen>
+    <dimen name="icon_large">64dp</dimen>
     <dimen name="padding_very_small">4dp</dimen>
     <dimen name="padding_small">8dp</dimen>
     <dimen name="padding_medium">16dp</dimen>
     <dimen name="padding_large">32dp</dimen>
     <dimen name="padding_xlarge">64dp</dimen>
-    <dimen name="icon_small">32dp</dimen>
-    <dimen name="icon_medium">48dp</dimen>
-    <dimen name="icon_large">64dp</dimen>
-    <dimen name="button_width">250dp</dimen>
-    <dimen name="text_regular">14sp</dimen>
-    <dimen name="card_elevation">5dp</dimen>
     <dimen name="profile_icon_size">215dp</dimen>
     <dimen name="shadow_size">20dp</dimen>
 </resources>

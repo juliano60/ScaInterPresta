@@ -1,8 +1,18 @@
 package com.nanoporetech.scainternew.screens
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.HelpOutline
 import androidx.compose.material.icons.automirrored.outlined.Logout
@@ -10,8 +20,13 @@ import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationDrawerItem
+import androidx.compose.material3.NavigationDrawerItemDefaults
+import androidx.compose.material3.PermanentDrawerSheet
+import androidx.compose.material3.PermanentNavigationDrawer
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -19,13 +34,19 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import androidx.navigation.NavGraph.Companion.findStartDestination
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -35,47 +56,115 @@ import com.nanoporetech.scainternew.conf.AppConstants
 import com.nanoporetech.scainternew.screens.support.SupportScreen
 import com.nanoporetech.scainternew.ui.screens.HealthCareScreen
 import com.nanoporetech.scainternew.ui.theme.ScaInterNewTheme
+import com.nanoporetech.scainternew.ui.utils.NavigationType
+
+/** Route comports the different screens/routes we can navigate to **/
+enum class Route {
+    Home,
+    Support
+}
+
+private data class TabSpec(
+    /** route is the destination route **/
+    val route: String,
+    /** label is the tab label **/
+    val label: String,
+    /** icon is the tab icon **/
+    val icon: ImageVector
+)
 
 @Composable
 fun AppTabScreen(
-    isLoggedIn: Boolean,
+    navigationType: NavigationType,
     onLogout: () -> Unit,
     onBack: () -> Unit,
-    onShowLogin: @Composable () -> Unit = { DummyScreen() },
 ) {
-    if (isLoggedIn) {
-        LoggedInTabs(
-            onBack = onBack,
-            onLogout = onLogout
+    val tabs = listOf(
+        TabSpec(
+            route = Route.Home.name,
+            label = stringResource(R.string.page_home),
+            icon = Icons.Outlined.Home
+        ),
+        TabSpec(
+            route = Route.Support.name,
+            label = stringResource(R.string.page_support),
+            icon = Icons.AutoMirrored.Outlined.HelpOutline
         )
+    )
+    
+    // single controller for tabs
+    val navController = rememberNavController()
+
+    val backStackEntry by navController.currentBackStackEntryAsState()
+    val currentRoute = backStackEntry?.destination?.route ?: tabs.first().route
+    val showPermanentDrawer = navigationType == NavigationType.PERMANENT_NAVIGATION_DRAWER
+
+    fun onTabPressed(route: String) {
+        navController.navigate(route) {
+            // do not create a copy if at top of the stack
+            launchSingleTop = true
+            // restore previous state if visited befo
+            restoreState = true
+            // pop everything above start destination
+            popUpTo(tabs.first().route) { saveState = true }
+        }
+    }
+
+    if (showPermanentDrawer) {
+        PermanentNavigationDrawer(
+            drawerContent = {
+                PermanentDrawerSheet(
+                    drawerContainerColor = MaterialTheme.colorScheme.surface,
+                    drawerContentColor = MaterialTheme.colorScheme.onSurface,
+                    modifier = Modifier
+                        .width(dimensionResource(R.dimen.drawer_width))) {
+
+                    NavigationDrawerContent(
+                        selectedRoute = currentRoute,
+                        onTabPressed = { route -> onTabPressed(route) },
+                        navigationItemContentList = tabs,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(dimensionResource(R.dimen.drawer_padding_content))
+                    )
+                }
+            }
+        ) {
+            MainContent(
+                navigationType = navigationType,
+                currentRoute = currentRoute,
+                navController = navController,
+                tabs = tabs,
+                onBack = onBack,
+                onLogout = onLogout,
+                onTabPressed = { route -> onTabPressed(route) },
+            )
+        }
     } else {
-        onShowLogin()
+        MainContent(
+            navigationType = navigationType,
+            currentRoute = currentRoute,
+            navController = navController,
+            tabs = tabs,
+            onBack = onBack,
+            onLogout = onLogout,
+            onTabPressed = { route -> onTabPressed(route) },
+        )
     }
 }
 
 @Composable
-private fun LoggedInTabs(
+private fun MainContent(
+    navigationType: NavigationType,
+    currentRoute: String,
+    tabs: List<TabSpec>,
     onBack: () -> Unit,
-    onLogout: () -> Unit
-) {
-    val navController = rememberNavController()
-
-    // Bottom tabs
-    val tabs = listOf(
-        TabSpec(
-            route = "home",
-            label = stringResource(R.string.home),
-            icon = Icons.Outlined.Home
-        ),
-        TabSpec(
-            route = "support",
-            label = stringResource(R.string.support_title),
-            icon = Icons.AutoMirrored.Outlined.HelpOutline
-        )
-    )
-
-    val backStackEntry by navController.currentBackStackEntryAsState()
-    val currentRoute = backStackEntry?.destination?.route ?: tabs.first().route
+    onLogout: () -> Unit,
+    onTabPressed: (String) -> Unit,
+    navController: NavHostController,
+    modifier: Modifier = Modifier
+){
+    val showBottomBar = navigationType == NavigationType.BOTTOM_NAVIGATION
 
     Scaffold(
         topBar = {
@@ -84,40 +173,114 @@ private fun LoggedInTabs(
             )
         },
         bottomBar = {
-            NavigationBar {
-                tabs.forEach { tab ->
-                    NavigationBarItem(
-                        selected = currentRoute == tab.route,
-                        onClick = {
-                            navController.navigate(tab.route) {
-                                launchSingleTop = true
-                                restoreState = true
-                                popUpTo(navController.graph.findStartDestination().id) {
-                                    saveState = true
-                                }
-                            }
-                        },
-                        icon = { Icon(tab.icon, contentDescription = null) },
-                        label = { Text(tab.label) }
-                    )
-                }
+            if (showBottomBar) {
+                AppBottomNavigationBar(
+                    currentRoute = currentRoute,
+                    tabs = tabs,
+                    onTabPressed = onTabPressed
+                )
             }
         }
     ) { innerPadding ->
         NavHost(
             navController = navController,
             startDestination = tabs.first().route,
-            modifier = Modifier.padding(innerPadding)
+            modifier = modifier.padding(innerPadding)
         ) {
-            composable("home") { HealthCareScreen(
-                modifier = Modifier
-                    .background(color = AppConstants.lightGreen)
-                    .padding(dimensionResource(R.dimen.padding_medium))
-            ) }
-            composable("support") { SupportScreen(
-                onBack = onBack
-            ) }
+            composable(Route.Home.name) {
+                HealthCareScreen(
+                    modifier = Modifier
+                        .background(color = AppConstants.lightGreen)
+                        .padding(dimensionResource(R.dimen.padding_medium))
+                )
+            }
+            composable(Route.Support.name) {
+                SupportScreen(
+                    onBack = onBack
+                )
+            }
         }
+    }
+}
+
+@Composable
+private fun AppBottomNavigationBar(
+    currentRoute: String,
+    tabs: List<TabSpec>,
+    onTabPressed: (String) -> Unit,
+    modifier: Modifier = Modifier
+) {
+    NavigationBar(modifier) {
+        tabs.forEach { tab ->
+            NavigationBarItem(
+                selected = currentRoute == tab.route,
+                onClick = { onTabPressed(tab.route) },
+                icon = { Icon(tab.icon, contentDescription = tab.label) },
+                label = { Text(tab.label) }
+            )
+        }
+    }
+}
+
+@Composable
+private fun NavigationDrawerContent(
+    selectedRoute: String,
+    onTabPressed: (String) -> Unit,
+    navigationItemContentList: List<TabSpec>,
+    modifier: Modifier = Modifier
+) {
+    Column(modifier) {
+        // HEADER
+        DrawerHeader(
+            modifier = Modifier
+                .fillMaxWidth()
+        )
+
+        Spacer(modifier = Modifier.size(dimensionResource(R.dimen.padding_medium)))
+
+        // CONTENT
+        for (navItem in navigationItemContentList) {
+            NavigationDrawerItem(
+                label = {
+                    Text(
+                        text = navItem.label
+                    )
+                },
+                icon = {
+                    Icon(
+                        imageVector = navItem.icon,
+                        contentDescription = navItem.label
+                    )
+                },
+                onClick = { onTabPressed(navItem.route) },
+                selected = selectedRoute == navItem.route,
+                colors = NavigationDrawerItemDefaults.colors(
+                    unselectedContainerColor = Color.Transparent
+                ),
+            )
+        }
+    }
+}
+
+@Composable
+private fun DrawerHeader(
+    modifier: Modifier = Modifier
+) {
+    Row(
+        horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.padding_small)),
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = modifier
+            .padding(start = dimensionResource(R.dimen.padding_small))) {
+        Image(
+            painter = painterResource(R.drawable.sca_logo_no_title),
+            contentDescription = stringResource(R.string.company_name),
+            modifier = Modifier
+                .size(32.dp)
+        )
+        Text(
+            text = stringResource(R.string.company_name),
+            style = MaterialTheme.typography.titleMedium
+        )
     }
 }
 
@@ -142,15 +305,10 @@ fun AppTopBar(
             titleContentColor = Color.White,
             navigationIconContentColor = Color.White,
             actionIconContentColor = Color.White
-        )
+        ),
+        modifier = modifier
     )
 }
-
-private data class TabSpec(
-    val route: String,
-    val label: String,
-    val icon: ImageVector
-)
 
 /** Screens placeholders */
 @Composable fun DummyScreen() { /* ... */ }
@@ -164,7 +322,7 @@ fun AppTabScreenPreview() {
                 .fillMaxSize()
         ) {
             AppTabScreen(
-                isLoggedIn = true,
+                navigationType = NavigationType.BOTTOM_NAVIGATION,
                 onBack = {},
                 onLogout = {},
             )

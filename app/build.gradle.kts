@@ -53,9 +53,13 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(libs.androidx.navigation.runtime.android)
     implementation(libs.androidx.navigation.compose)
+
+    // Extended icons
     implementation(libs.androidx.material.icons.extended)
     implementation(libs.material.icons.extended)
     implementation(libs.font.awesome)
+
+    // Asynchronous image
     implementation(libs.coil.compose)
 
     // Retrofit
@@ -65,11 +69,13 @@ dependencies {
     implementation (libs.converter.gson)
     implementation(libs.retrofit2.kotlinx.serialization.converter)
     implementation(libs.okhttp)
+    implementation(libs.logging.interceptor)
 
     // Kotlin serialization
     implementation(libs.kotlinx.serialization.json)
 
-    implementation(libs.logging.interceptor)
+    // Window class size
+    implementation(libs.androidx.material3.window.size)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
