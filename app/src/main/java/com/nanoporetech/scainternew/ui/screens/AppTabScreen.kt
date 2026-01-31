@@ -190,13 +190,17 @@ private fun MainContent(
             composable(Route.Home.name) {
                 HealthCareScreen(
                     modifier = Modifier
+                        .fillMaxSize()
                         .background(color = AppConstants.lightGreen)
                         .padding(dimensionResource(R.dimen.padding_medium))
                 )
             }
             composable(Route.Support.name) {
                 SupportScreen(
-                    onBack = onBack
+                    onBack = onBack,
+                    modifier = Modifier
+                        .background(color = AppConstants.lightGreen)
+                        .padding(dimensionResource(R.dimen.padding_medium))
                 )
             }
         }

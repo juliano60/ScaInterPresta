@@ -15,4 +15,6 @@
     <dimen name="profile_icon_size">215dp</dimen>
     <dimen name="shadow_size">20dp</dimen>
     <dimen name="vertical_spacing_medium">16dp</dimen>
+    <dimen name="vertical_spacing_small">8dp</dimen>
+    <dimen name="horizontal_spacing_small">8dp</dimen>
 </resources>

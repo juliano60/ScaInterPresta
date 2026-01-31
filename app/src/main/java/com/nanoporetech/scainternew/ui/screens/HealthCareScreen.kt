@@ -1,6 +1,8 @@
 package com.nanoporetech.scainternew.ui.screens
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -23,6 +25,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
@@ -38,32 +41,44 @@ import com.nanoporetech.scainternew.ui.utils.CardHeader
 fun HealthCareScreen(
     modifier: Modifier = Modifier
 ) {
-    Column(
-        verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.padding_medium)),
+    Box(
         modifier = modifier
-            .fillMaxSize()
     ) {
-        MainHeader(
+        Column(
+            verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.vertical_spacing_medium)),
             modifier = Modifier
-                .fillMaxWidth()
-        )
+                .fillMaxSize()
+        ) {
+            // MAIN HEADER SECTION
+            MainHeader(
+                modifier = Modifier
+                    .fillMaxWidth()
+            )
 
-        SubHeader()
+            // SUB HEADER SECTION
+            SubHeader(
+                modifier = Modifier
+                    .fillMaxWidth()
+            )
 
-        ConsultationCard(
-            modifier = Modifier
-                .fillMaxWidth()
-        )
+            // CONSULTATION MENU
+            ConsultationCard(
+                modifier = Modifier
+                    .fillMaxWidth()
+            )
 
-        ExaminationCard(
-            modifier = Modifier
-                .fillMaxWidth()
-        )
+            // EXAMINATION MENU
+            ExaminationCard(
+                modifier = Modifier
+                    .fillMaxWidth()
+            )
 
-        HospitalisationCard(
-            modifier = Modifier
-                .fillMaxWidth()
-        )
+            // HOSPITALISATION MENU
+            HospitalisationCard(
+                modifier = Modifier
+                    .fillMaxWidth()
+            )
+        }
     }
 }
 
@@ -85,10 +100,12 @@ fun MainHeader(
 fun SubHeader(
     modifier: Modifier = Modifier
 ) {
-    Text(
-        text = stringResource(R.string.dashboard),
-        style = MaterialTheme.typography.headlineMedium
-    )
+    Row(modifier) {
+        Text(
+            text = stringResource(R.string.dashboard),
+            style = MaterialTheme.typography.headlineMedium
+        )
+    }
 }
 
 @Composable
@@ -106,7 +123,7 @@ fun CardRow(
             tint = MaterialTheme.colorScheme.onPrimaryContainer,
             modifier = Modifier.size(dimensionResource(R.dimen.icon_small))
         )
-        Spacer(modifier = Modifier.width(dimensionResource(R.dimen.padding_small)))
+        Spacer(modifier = Modifier.width(dimensionResource(R.dimen.horizontal_spacing_small)))
         Text(
             text = title,
             style = MaterialTheme.typography.titleLarge,
@@ -125,10 +142,9 @@ fun ConsultationCard(
             containerColor = AppConstants.mainGreen
         ),
         modifier = modifier
-            .fillMaxWidth()
     ) {
         Column(
-            verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.padding_medium)),
+            verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.vertical_spacing_medium)),
             modifier = Modifier
                 .padding(dimensionResource(R.dimen.padding_medium))
         ) {
@@ -160,10 +176,9 @@ fun ExaminationCard(
             containerColor = AppConstants.mainGreen
         ),
         modifier = modifier
-            .fillMaxWidth()
     ) {
         Column(
-            verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.padding_medium)),
+            verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.vertical_spacing_medium)),
             modifier = Modifier
                 .padding(dimensionResource(R.dimen.padding_medium))
         ) {
@@ -173,7 +188,7 @@ fun ExaminationCard(
             )
 
             CardRow(
-                title = stringResource(R.string.new_care_sheet),
+                title = stringResource(R.string.new_examination),
                 iconImg = Icons.Outlined.Search
             )
 
@@ -195,10 +210,9 @@ fun HospitalisationCard(
             containerColor = AppConstants.mainGreen
         ),
         modifier = modifier
-            .fillMaxWidth()
     ) {
         Column(
-            verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.padding_medium)),
+            verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.vertical_spacing_medium)),
             modifier = Modifier
                 .padding(dimensionResource(R.dimen.padding_medium))
         ) {
@@ -208,7 +222,7 @@ fun HospitalisationCard(
             )
 
             CardRow(
-                title = stringResource(R.string.new_care_sheet),
+                title = stringResource(R.string.new_hospitalisation),
                 iconImg = Icons.Outlined.Search
             )
 
@@ -221,7 +235,7 @@ fun HospitalisationCard(
 }
 
 @Preview(
-    //locale = "fr-rCI",
+    locale = "fr-rCI",
     showBackground = true,
 )
 @Composable
@@ -233,6 +247,8 @@ fun HealthCareScreenPreview() {
         ) {
             HealthCareScreen(
                 modifier = Modifier
+                    .fillMaxSize()
+                    .background(color = AppConstants.lightGreen)
                     .padding(dimensionResource(R.dimen.padding_medium))
             )
         }
