@@ -443,6 +443,10 @@ fun AppTopBar(
 /** Screens placeholders */
 @Composable fun DummyScreen() { /* ... */ }
 
+@Preview(
+    locale = "fr-rCI",
+    showBackground = true,
+)
 @Preview
 @Composable
 fun AppTabScreenPreview() {

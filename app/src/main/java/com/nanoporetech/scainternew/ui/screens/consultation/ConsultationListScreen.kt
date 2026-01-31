@@ -68,7 +68,7 @@ fun ConsultationRowItem(
     modifier: Modifier = Modifier
 ) {
     Column(
-        verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.padding_very_small)),
+        verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.padding_xsmall)),
         modifier = modifier
     ) {
         Row(verticalAlignment = Alignment.CenterVertically,

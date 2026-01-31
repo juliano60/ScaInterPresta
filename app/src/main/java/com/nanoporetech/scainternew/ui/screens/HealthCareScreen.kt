@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -29,7 +30,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.input.pointer.motionEventSpy
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -81,11 +84,15 @@ fun HealthCareScreen(
                     .fillMaxWidth()
             )
 
+            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.vertical_spacing_xsmall)))
+
             // EXAMINATION MENU
             ExaminationCard(
                 modifier = Modifier
                     .fillMaxWidth()
             )
+
+            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.vertical_spacing_xsmall)))
 
             // HOSPITALISATION MENU
             HospitalisationCard(
@@ -141,6 +148,7 @@ fun ConsultationCard(
     modifier: Modifier = Modifier
 ) {
     Card(
+        shape = RectangleShape,
         elevation = CardDefaults.cardElevation(defaultElevation = dimensionResource(R.dimen.card_elevation)),
         colors = CardDefaults.cardColors(
             containerColor = AppConstants.mainGreen
@@ -150,7 +158,7 @@ fun ConsultationCard(
         Column(
             verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.vertical_spacing_small)),
             modifier = Modifier
-                .padding(dimensionResource(R.dimen.padding_small))
+                .padding(dimensionResource(R.dimen.padding_medium))
         ) {
             CardHeader(
                 title = stringResource(R.string.consultation_menu_title),
@@ -175,6 +183,7 @@ fun ExaminationCard(
     modifier: Modifier = Modifier
 ) {
     Card(
+        shape = RectangleShape,
         elevation = CardDefaults.cardElevation(defaultElevation = dimensionResource(R.dimen.card_elevation)),
         colors = CardDefaults.cardColors(
             containerColor = AppConstants.mainGreen
@@ -184,7 +193,7 @@ fun ExaminationCard(
         Column(
             verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.vertical_spacing_small)),
             modifier = Modifier
-                .padding(dimensionResource(R.dimen.padding_small))
+                .padding(dimensionResource(R.dimen.padding_medium))
         ) {
             CardHeader(
                 title = stringResource(R.string.examination_menu_title),
@@ -209,6 +218,7 @@ fun HospitalisationCard(
     modifier: Modifier = Modifier
 ) {
     Card(
+        shape = RectangleShape,
         elevation = CardDefaults.cardElevation(defaultElevation = dimensionResource(R.dimen.card_elevation)),
         colors = CardDefaults.cardColors(
             containerColor = AppConstants.mainGreen
@@ -218,7 +228,7 @@ fun HospitalisationCard(
         Column(
             verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.vertical_spacing_small)),
             modifier = Modifier
-                .padding(dimensionResource(R.dimen.padding_small))
+                .padding(dimensionResource(R.dimen.padding_medium))
         ) {
             CardHeader(
                 title = stringResource(R.string.hospitalisation_menu_title),
