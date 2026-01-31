@@ -48,6 +48,9 @@
     <string name="total_holder_label">Total Assuré:</string>
     <string name="policy_members">Membres Assurés</string>
 
+    <!-- MISCELLANEOUS -->
+    <string name="back_button">Retour</string>
+
     <!-- ERRORS -->
     <string name="scan_qr_code">Scanner un QR code</string>
     <string name="err_invalid_credentials">Identifiant ou mot de passe incorrect.</string>

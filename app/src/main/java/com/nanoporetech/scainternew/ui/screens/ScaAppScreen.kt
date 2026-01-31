@@ -155,9 +155,6 @@ fun App(
             composable(Dest.TabsScreen.name) {
                 AppTabScreen(
                     navigationType = navigationType,
-                    onBack = {
-                        navHostController.popBackStack()
-                    },
                     onLogout = {
                         model.logout()
                     },

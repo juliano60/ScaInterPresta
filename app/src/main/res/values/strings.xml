@@ -48,6 +48,9 @@
     <string name="scan_qr_code">Scan a QR code</string>
     <string name="policy_members">Policy Members</string>
 
+    <!-- MISCELLANEOUS -->
+    <string name="back_button">Back</string>
+
     <!-- ERRORS -->
     <string name="err_invalid_credentials">Username or password incorrect.</string>
     <string name="err_connection_offline">Network unavailable.</string>

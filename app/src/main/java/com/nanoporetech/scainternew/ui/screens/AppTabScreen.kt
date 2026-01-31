@@ -20,6 +20,7 @@ import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.outlined.HelpOutline
 import androidx.compose.material.icons.automirrored.outlined.Logout
 import androidx.compose.material.icons.outlined.Home
@@ -99,7 +100,6 @@ fun AppTabScreen(
     navigationType: NavigationType,
     consultationModel: ConsultationViewModel = viewModel(),
     onLogout: () -> Unit,
-    onBack: () -> Unit,
 ) {
     val tabs = listOf(
         TabSpec(
@@ -158,7 +158,9 @@ fun AppTabScreen(
                 currentRoute = currentRoute,
                 navController = navController,
                 tabs = tabs,
-                onBack = onBack,
+                onBack = {
+                    navController.popBackStack()
+                },
                 onLogout = onLogout,
                 onTabPressed = { route -> onTabPressed(route) },
             )
@@ -170,7 +172,9 @@ fun AppTabScreen(
             currentRoute = currentRoute,
             navController = navController,
             tabs = tabs,
-            onBack = onBack,
+            onBack = {
+                navController.popBackStack()
+            },
             onLogout = onLogout,
             onTabPressed = { route -> onTabPressed(route) },
         )
@@ -191,12 +195,15 @@ private fun MainContent(
 ){
     val showBottomBar = navigationType == NavigationType.BOTTOM_NAVIGATION
     val state by consultationModel.uiState.collectAsState()
+    val canGoBack = navController.previousBackStackEntry != null
 
     Scaffold(
         contentWindowInsets = WindowInsets(0),
         topBar = {
             AppTopBar(
+                onBack = onBack,
                 onLogout = onLogout,
+                showBackButton = canGoBack
             )
         },
         bottomBar = {
@@ -423,6 +430,8 @@ private fun DrawerHeader(
 @Composable
 fun AppTopBar(
     onLogout: () -> Unit,
+    onBack: () -> Unit,
+    showBackButton: Boolean,
     modifier: Modifier = Modifier
 ) {
     TopAppBar(
@@ -442,6 +451,16 @@ fun AppTopBar(
             navigationIconContentColor = Color.White,
             actionIconContentColor = Color.White
         ),
+        navigationIcon = {
+            if (showBackButton) {
+                IconButton(onClick = onBack) {
+                    Icon(
+                        imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                        contentDescription = stringResource(R.string.back_button)
+                    )
+                }
+            }
+        },
         modifier = modifier
     )
 }
@@ -463,7 +482,6 @@ fun AppTabScreenPreview() {
         ) {
             AppTabScreen(
                 navigationType = NavigationType.BOTTOM_NAVIGATION,
-                onBack = {},
                 onLogout = {},
             )
         }

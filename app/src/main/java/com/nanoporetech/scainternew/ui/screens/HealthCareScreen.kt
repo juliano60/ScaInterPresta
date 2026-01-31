@@ -74,6 +74,7 @@ fun HealthCareScreen(
                 title = provider.displayedName,
                 modifier = Modifier
                     .fillMaxWidth()
+                    .padding(vertical = dimensionResource(R.dimen.padding_medium))
             )
 
             // SUB HEADER SECTION
