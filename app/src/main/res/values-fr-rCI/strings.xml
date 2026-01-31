@@ -46,8 +46,10 @@
     <string name="total_cost_label">Total:</string>
     <string name="total_sca_label">Total SCA:</string>
     <string name="total_holder_label">Total Assuré:</string>
+    <string name="policy_members">Membres Assurés</string>
 
     <!-- ERRORS -->
+    <string name="scan_qr_code">Scanner un QR code</string>
     <string name="err_invalid_credentials">Identifiant ou mot de passe incorrect.</string>
     <string name="err_connection_offline">Connexion réseau indisponible.</string>
     <string name="err_unknown_error">Une erreur est survenue. Veuillez réessayer.</string>

@@ -16,6 +16,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             ScaInterNewTheme {
+
                 val windowSize = calculateWindowSizeClass(this)
 
                 App(

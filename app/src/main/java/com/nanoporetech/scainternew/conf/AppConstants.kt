@@ -15,4 +15,6 @@ object AppConstants {
         green = 237f / 255f,
         blue = 239f / 255f
     )
+
+    val simulatedFamilyId = "1825"
 }

@@ -2,7 +2,9 @@ package com.nanoporetech.scainternew.data
 
 import com.nanoporetech.scainternew.model.Consultation
 import com.nanoporetech.scainternew.model.Examination
+import com.nanoporetech.scainternew.model.FamilyMember
 import com.nanoporetech.scainternew.model.Hospitalisation
+import com.nanoporetech.scainternew.model.Provider
 
 object Datasource {
     fun hospitalisations(): List<Hospitalisation> = listOf (
@@ -188,4 +190,41 @@ object Datasource {
             dateOfBirth = "1950-01-01T00:00:00-05:00"
         )
     )
+
+    fun healthProviders(): List<Provider> {
+        return listOf(
+            Provider(
+                id = 620,
+                role = "etablissement",
+                name = "Centre d Ophtalmologie de Kami"
+            ),
+            Provider(
+                id = 109,
+                role = "etablissement",
+                name = "Centre Médical Les Bleuets" // has some rejections
+            ),
+            Provider(
+                id = 465,
+                role = "etablissement",
+                name = "Clinique Medicale notre Dame"
+            )
+        )
+    }
+
+    fun policyHolderFamilyMembers(): List<FamilyMember> {
+        return listOf(
+            FamilyMember(
+                id = 15244,
+                fullname = "KOUAME KRA",
+                internalId = "9MA18002B0054A1",
+                link = "Assuré Principal"
+            ),
+            FamilyMember(
+                id = 15245,
+                fullname = "KRA  KOUASSI JOEL",
+                internalId = "2MA18002B0054C1",
+                link = "KOUAME KRA"
+            )
+        )
+    }
 }

@@ -7,6 +7,7 @@
     <dimen name="icon_small">32dp</dimen>
     <dimen name="icon_medium">48dp</dimen>
     <dimen name="icon_large">64dp</dimen>
+    <dimen name="scanner_icon_size">120dp</dimen>
     <dimen name="padding_very_small">4dp</dimen>
     <dimen name="padding_small">8dp</dimen>
     <dimen name="padding_medium">16dp</dimen>

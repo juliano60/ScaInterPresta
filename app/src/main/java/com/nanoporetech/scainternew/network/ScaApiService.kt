@@ -1,6 +1,7 @@
 package com.nanoporetech.scainternew.network
 
 import com.google.gson.GsonBuilder
+import com.nanoporetech.scainternew.model.FamilyMember
 import com.nanoporetech.scainternew.model.Provider
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -8,7 +9,9 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Body
+import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Query
 
 private const val BASE_URL = "http://138.68.160.209/centredesantetout/"
 
@@ -29,6 +32,10 @@ private val retrofit = Retrofit.Builder()
 interface ScaApiService {
     @POST("provider_api.php")
     suspend fun loginProvider(@Body request: FetchProviderRequest): Response<Provider>
+
+    @GET("assure_api.php")
+    suspend fun fetchFamilyMembers(@Query("action") action: String,
+                                   @Query("family_id") familyId: String): Response<List<FamilyMember>>
 }
 
 object ScaApi {

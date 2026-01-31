@@ -108,4 +108,5 @@ class AppViewModel: ViewModel() {
         // now attempt to login
         login(credentials)
     }
+
 }

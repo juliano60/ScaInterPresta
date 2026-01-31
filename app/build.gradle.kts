@@ -77,6 +77,18 @@ dependencies {
     // Window class size
     implementation(libs.androidx.material3.window.size)
 
+    // ML Kit Barcode Scanning
+    implementation (libs.barcode.scanning)
+
+    // Camera
+    implementation (libs.androidx.camera.core)
+    implementation (libs.androidx.camera.camera2)
+    implementation (libs.androidx.camera.lifecycle)
+    implementation (libs.androidx.camera.view)
+
+    // (optional) Accompanist permissions (or use ActivityResult APIs)
+    implementation(libs.accompanist.permissions)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

@@ -45,6 +45,8 @@
     <string name="total_cost_label">Total:</string>
     <string name="total_sca_label">Total SCA:</string>
     <string name="total_holder_label">Total Assuré:</string>
+    <string name="scan_qr_code">Scan a QR code</string>
+    <string name="policy_members">Policy Members</string>
 
     <!-- ERRORS -->
     <string name="err_invalid_credentials">Username or password incorrect.</string>

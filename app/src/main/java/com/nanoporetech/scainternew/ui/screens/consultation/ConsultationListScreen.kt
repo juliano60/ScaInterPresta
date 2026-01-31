@@ -31,7 +31,7 @@ import com.nanoporetech.scainternew.model.Consultation
 import com.nanoporetech.scainternew.utils.displayedDateAndTime
 
 @Composable
-fun ConsultationListView(
+fun ConsultationListScreen(
     modifier: Modifier = Modifier,
     consultations: List<Consultation> = Datasource.consultations()
 ) {

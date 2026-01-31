@@ -2,6 +2,7 @@ package com.nanoporetech.scainternew.screens
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
@@ -17,7 +18,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -29,7 +29,6 @@ import com.nanoporetech.scainternew.model.UiEvent
 import com.nanoporetech.scainternew.conf.AppConstants
 import com.nanoporetech.scainternew.data.Datasource
 import com.nanoporetech.scainternew.screens.consultation.ConsultationDetailScreen
-import com.nanoporetech.scainternew.screens.consultation.ConsultationListView
 import com.nanoporetech.scainternew.screens.examination.ExaminationListView
 import com.nanoporetech.scainternew.screens.hospitalisation.HospitalisationListView
 import com.nanoporetech.scainternew.screens.login.ForgottenPasswordScreen
@@ -40,10 +39,11 @@ import kotlinx.coroutines.flow.collectLatest
 enum class Dest {
     Login,
     ConsultationList,
+    NewConsultation,
     ExaminationList,
     HospitalisationList,
     ForgotPassword,
-    Tabs,
+    TabsScreen,
     ConsultationDetailView,
 }
 
@@ -91,7 +91,7 @@ fun App(
     }
 
     LaunchedEffect(isLoggedIn) {
-        val dest = if (isLoggedIn) Dest.Tabs.name else Dest.Login.name
+        val dest = if (isLoggedIn) Dest.TabsScreen.name else Dest.Login.name
         navHostController.navigate(dest) {
             launchSingleTop = true
             popUpTo(navHostController.graph.id) { inclusive = true }
@@ -99,11 +99,12 @@ fun App(
     }
 
     Scaffold(
+        contentWindowInsets = WindowInsets(0),
         snackbarHost = { SnackbarHost(snackbarHostState) }
     ) { innerPadding ->
         NavHost(
             navController = navHostController,
-            startDestination = if (isLoggedIn) Dest.Tabs.name else Dest.Login.name,
+            startDestination = if (isLoggedIn) Dest.TabsScreen.name else Dest.Login.name,
             modifier = Modifier.padding(innerPadding)
         ) {
             composable(Dest.Login.name) {
@@ -120,12 +121,6 @@ fun App(
                     modifier = Modifier
                         .fillMaxSize()
                         .background(AppConstants.lightGreen)
-                        .padding(dimensionResource(R.dimen.padding_medium))
-                )
-            }
-            composable(Dest.ConsultationList.name) {
-                ConsultationListView(
-                    modifier = Modifier
                         .padding(dimensionResource(R.dimen.padding_medium))
                 )
             }
@@ -157,7 +152,7 @@ fun App(
                         .padding(dimensionResource(R.dimen.padding_medium))
                 )
             }
-            composable(Dest.Tabs.name) {
+            composable(Dest.TabsScreen.name) {
                 AppTabScreen(
                     navigationType = navigationType,
                     onBack = {
