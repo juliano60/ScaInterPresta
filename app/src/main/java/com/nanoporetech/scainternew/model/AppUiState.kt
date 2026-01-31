@@ -9,4 +9,6 @@ data class AppUiState(
     val username: String = "",
     /** username is the password value entered by the user **/
     val password: String = "",
+    /** rememberMe tracks whether the user wants to be remembered **/
+    val rememberMe: Boolean = false
 )

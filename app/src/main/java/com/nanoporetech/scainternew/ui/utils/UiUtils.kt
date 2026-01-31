@@ -56,16 +56,3 @@ fun SubHeader(
         )
     }
 }
-
-@Composable
-fun SubHeader2(
-    title: String,
-    modifier: Modifier = Modifier
-) {
-    Row(modifier) {
-        Text(
-            text = title,
-            style = MaterialTheme.typography.titleSmall
-        )
-    }
-}

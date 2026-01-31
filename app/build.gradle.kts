@@ -85,8 +85,11 @@ dependencies {
     implementation (libs.androidx.camera.lifecycle)
     implementation (libs.androidx.camera.view)
 
-    // (optional) Accompanist permissions (or use ActivityResult APIs)
+    // (optional) Accompanist permissions
     implementation(libs.accompanist.permissions)
+
+    // Credentials Store
+    implementation(libs.androidx.security.crypto.v110alpha06)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

@@ -29,6 +29,7 @@ import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -56,11 +57,14 @@ fun LoginScreen(
     newUsername: String,
     newPassword: String,
     isLoginInvalid: Boolean,
+    rememberMe: Boolean,
     onUsernameChanged: (String) -> Unit,
     onPasswordChanged: (String) -> Unit,
     onForgottenPassword: () -> Unit,
+    onCheckedChange: (Boolean) -> Unit,
     modifier: Modifier = Modifier
 ) {
+
     Box(
         modifier = modifier
     ) {
@@ -101,6 +105,8 @@ fun LoginScreen(
             // FORGOTTEN PASSWORD SECTION
             ForgottenPasswordSection(
                 onForgottenPassword = onForgottenPassword,
+                onCheckedChange = onCheckedChange,
+                rememberMe = rememberMe,
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(vertical = dimensionResource(R.dimen.padding_medium))
@@ -244,6 +250,8 @@ fun CredentialsSection(
 @Composable
 fun ForgottenPasswordSection(
     onForgottenPassword: () -> Unit,
+    onCheckedChange: (Boolean) -> Unit,
+    rememberMe: Boolean,
     modifier: Modifier = Modifier
 ) {
     Row(
@@ -256,8 +264,8 @@ fun ForgottenPasswordSection(
             horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.padding_small))
         ) {
             Switch(
-                checked = false,
-                onCheckedChange = { },
+                checked = rememberMe,
+                onCheckedChange = onCheckedChange,
                 modifier = Modifier
             )
             Text(
@@ -301,9 +309,11 @@ fun LoginScreenPreview(
                 newUsername = "",
                 newPassword = "",
                 isLoginInvalid = false,
+                rememberMe = false,
                 onUsernameChanged = {},
                 onPasswordChanged = {},
                 onForgottenPassword = {},
+                onCheckedChange = {},
                 modifier = Modifier
                     .fillMaxSize()
                     .background(AppConstants.lightGreen)

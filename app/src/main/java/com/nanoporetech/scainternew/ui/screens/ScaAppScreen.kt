@@ -28,11 +28,13 @@ import com.nanoporetech.scainternew.R
 import com.nanoporetech.scainternew.model.UiEvent
 import com.nanoporetech.scainternew.conf.AppConstants
 import com.nanoporetech.scainternew.data.Datasource
+import com.nanoporetech.scainternew.model.AppViewModelFactory
 import com.nanoporetech.scainternew.screens.consultation.ConsultationDetailScreen
 import com.nanoporetech.scainternew.screens.examination.ExaminationListView
 import com.nanoporetech.scainternew.screens.hospitalisation.HospitalisationListView
 import com.nanoporetech.scainternew.screens.login.ForgottenPasswordScreen
 import com.nanoporetech.scainternew.screens.login.LoginScreen
+import com.nanoporetech.scainternew.ui.utils.CredentialsStore
 import com.nanoporetech.scainternew.ui.utils.NavigationType
 import kotlinx.coroutines.flow.collectLatest
 
@@ -51,7 +53,9 @@ enum class Dest {
 @Composable
 fun App(
     windowSize: WindowWidthSizeClass,
-    model: AppViewModel = viewModel(),
+    model: AppViewModel = viewModel(
+        factory = AppViewModelFactory(LocalContext.current)
+    ),
     navHostController: NavHostController = rememberNavController()
 ) {
     val uiState = model.uiState.collectAsState()
@@ -90,6 +94,17 @@ fun App(
         }
     }
 
+    // prefill credentials if available
+    LaunchedEffect(Unit) {
+        val saved = model.store.load()
+        if (saved != null) {
+            model.prefillCredentials(
+                username = saved.username,
+                password = saved.password
+            )
+        }
+    }
+
     LaunchedEffect(isLoggedIn) {
         val dest = if (isLoggedIn) Dest.TabsScreen.name else Dest.Login.name
         navHostController.navigate(dest) {
@@ -117,7 +132,9 @@ fun App(
                         model.checkCredentials()
                     },
                     onForgottenPassword = { navHostController.navigate(Dest.ForgotPassword.name) },
+                    onCheckedChange = { model.updateRememberMe(it) },
                     isLoginInvalid = uiState.value.isLoginInvalid,
+                    rememberMe = uiState.value.rememberMe,
                     modifier = Modifier
                         .fillMaxSize()
                         .background(AppConstants.lightGreen)

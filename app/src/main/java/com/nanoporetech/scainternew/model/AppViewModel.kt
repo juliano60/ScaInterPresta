@@ -1,13 +1,16 @@
 package com.nanoporetech.scainternew.model
 
+import android.content.Context
 import android.util.Log
 import androidx.annotation.StringRes
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.nanoporetech.scainternew.R
 import com.nanoporetech.scainternew.network.Credentials
 import com.nanoporetech.scainternew.network.ScaApi
 import com.nanoporetech.scainternew.network.FetchProviderRequest
+import com.nanoporetech.scainternew.ui.utils.CredentialsStore
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -27,7 +30,9 @@ sealed interface UiEvent {
     ): UiEvent
 }
 
-class AppViewModel: ViewModel() {
+class AppViewModel(
+    val store: CredentialsStore
+): ViewModel() {
     // app state
     private var _uiState = MutableStateFlow(AppUiState())
     val uiState: StateFlow<AppUiState> = _uiState.asStateFlow()
@@ -54,6 +59,14 @@ class AppViewModel: ViewModel() {
                         currentState.copy(
                             isLoggedIn = true
                         )
+                    }
+
+                    if (_uiState.value.rememberMe) {
+                        // remember user credentials
+                        store.save(credentials.username, credentials.password)
+                    } else {
+                        // clear user credentials
+                        store.clear()
                     }
                 }
                 else {
@@ -109,4 +122,29 @@ class AppViewModel: ViewModel() {
         login(credentials)
     }
 
+    fun updateRememberMe(value: Boolean) {
+        _uiState.update { currentState ->
+            currentState.copy(rememberMe = value)
+        }
+    }
+
+    fun prefillCredentials(username: String, password: String) {
+        _uiState.update {  currentState ->
+            currentState.copy(
+                username = username,
+                password = password,
+                rememberMe = true
+            )
+        }
+    }
+}
+
+class AppViewModelFactory(
+    private val appContext: Context
+) : ViewModelProvider.Factory {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        return AppViewModel(
+            CredentialsStore(appContext.applicationContext)
+        ) as T
+    }
 }
