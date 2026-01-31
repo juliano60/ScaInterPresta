@@ -1,7 +1,5 @@
 package com.nanoporetech.scainternew.screens.login
 
-import android.util.Log
-import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.LocalIndication
 import androidx.compose.foundation.background
@@ -79,20 +77,12 @@ fun LoginScreen(
 
             Spacer(modifier = Modifier.height(dimensionResource(R.dimen.padding_medium)))
 
-            // WELCOME MESSAGE
-            Column(
+            // WELCOME MESSAGE SECTION
+            WelcomeMessage(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(vertical = dimensionResource(R.dimen.padding_large))
-            ) {
-                Text(
-                    text = stringResource(R.string.welcome_message),
-                    style = MaterialTheme.typography.displayMedium,
-                    color = MaterialTheme.colorScheme.primary,
-                    fontWeight = FontWeight.SemiBold,
-                    textAlign = TextAlign.Center,
-                )
-            }
+            )
 
             // CREDENTIALS SECTION
             CredentialsSection(
@@ -108,7 +98,7 @@ fun LoginScreen(
 
             Spacer(modifier = Modifier.height(dimensionResource(R.dimen.padding_medium)))
 
-            // FORGOTTEN PASSWORD AREA
+            // FORGOTTEN PASSWORD SECTION
             ForgottenPasswordSection(
                 onForgottenPassword = onForgottenPassword,
                 modifier = Modifier
@@ -116,7 +106,7 @@ fun LoginScreen(
                     .padding(vertical = dimensionResource(R.dimen.padding_medium))
             )
 
-            // LOGIN BUTTON AREA
+            // LOGIN BUTTON SECTION
             Button(
                 onClick = onSubmit,
                 enabled = isFormFilledIn(newUsername, newPassword),
@@ -163,6 +153,23 @@ fun HeaderAndLogo(
             fontWeight = FontWeight.SemiBold,
             modifier = Modifier
                 .padding(start = dimensionResource(R.dimen.padding_medium))
+        )
+    }
+}
+
+@Composable
+fun WelcomeMessage(
+    modifier: Modifier = Modifier
+) {
+    Column(
+        modifier = modifier
+    ) {
+        Text(
+            text = stringResource(R.string.welcome_message),
+            style = MaterialTheme.typography.displayMedium,
+            color = MaterialTheme.colorScheme.primary,
+            fontWeight = FontWeight.SemiBold,
+            textAlign = TextAlign.Center,
         )
     }
 }
@@ -278,7 +285,7 @@ fun ForgottenPasswordSection(
 }
 
 @Preview(
-    //locale = "fr-rCI",
+    locale = "fr-rCI",
     showBackground = true,
 )
 @Composable
@@ -298,8 +305,8 @@ fun LoginScreenPreview(
                 onPasswordChanged = {},
                 onForgottenPassword = {},
                 modifier = Modifier
-                    .background(AppConstants.lightGreen)
                     .fillMaxSize()
+                    .background(AppConstants.lightGreen)
                     .padding(dimensionResource(R.dimen.padding_medium))
             )
         }

@@ -118,8 +118,8 @@ fun App(
                     onForgottenPassword = { navHostController.navigate(Dest.ForgotPassword.name) },
                     isLoginInvalid = uiState.value.isLoginInvalid,
                     modifier = Modifier
-                        .background(AppConstants.lightGreen)
                         .fillMaxSize()
+                        .background(AppConstants.lightGreen)
                         .padding(dimensionResource(R.dimen.padding_medium))
                 )
             }
