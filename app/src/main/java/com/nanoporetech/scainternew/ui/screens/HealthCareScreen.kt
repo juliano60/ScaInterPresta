@@ -1,6 +1,9 @@
 package com.nanoporetech.scainternew.ui.screens
 
+import androidx.compose.foundation.LocalIndication
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -17,22 +20,26 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.Assignment
 import androidx.compose.material.icons.filled.Bed
+import androidx.compose.material.icons.filled.ChevronRight
 import androidx.compose.material.icons.outlined.GraphicEq
 import androidx.compose.material.icons.outlined.MonitorHeart
 import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.input.pointer.motionEventSpy
+import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -122,21 +129,50 @@ fun MainHeader(
 fun CardRow(
     title: String,
     iconImg: ImageVector,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit = {}
 ) {
+    val inPreview = LocalInspectionMode.current
+    val interactionSource = remember { MutableInteractionSource() }
+
     Row(
         verticalAlignment = Alignment.CenterVertically,
-        modifier = modifier) {
-        Icon(
-            imageVector = iconImg,
-            contentDescription = null,
-            tint = Color.White,
-            modifier = Modifier.size(dimensionResource(R.dimen.icon_small))
+        modifier = modifier.then(
+            if(!inPreview) {
+                Modifier.clickable(
+                    interactionSource = interactionSource,
+                    indication = LocalIndication.current,
+                    onClick = onClick
+                )
+            } else {
+                Modifier
+            }
         )
-        Spacer(modifier = Modifier.width(dimensionResource(R.dimen.horizontal_spacing_small)))
-        Text(
-            text = title,
-            color = Color.White,
+    ) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier
+                .weight(0.9f)
+        ) {
+            Icon(
+                imageVector = iconImg,
+                contentDescription = null,
+                tint = Color.White,
+                modifier = Modifier.size(dimensionResource(R.dimen.icon_small))
+            )
+            Spacer(modifier = Modifier.width(dimensionResource(R.dimen.horizontal_spacing_small)))
+            Text(
+                text = title,
+                color = Color.White,
+            )
+        }
+
+        Icon(
+            imageVector = Icons.Filled.ChevronRight,
+            contentDescription = null,
+            tint = MaterialTheme.colorScheme.surfaceDim,
+            modifier = Modifier
+                .weight(0.1f)
         )
     }
 }
@@ -167,12 +203,14 @@ fun ConsultationCard(
 
             CardRow(
                 title = stringResource(R.string.new_care_sheet),
-                iconImg = Icons.Outlined.Search
+                iconImg = Icons.Outlined.Search,
+                onClick = onNewConsultation
             )
 
             CardRow(
                 title = stringResource(R.string.view_care_sheet),
-                iconImg = Icons.AutoMirrored.Outlined.Assignment
+                iconImg = Icons.AutoMirrored.Outlined.Assignment,
+                onClick = onViewConsultations
             )
         }
     }

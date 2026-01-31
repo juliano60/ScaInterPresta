@@ -56,7 +56,6 @@ dependencies {
 
     // Extended icons
     implementation(libs.androidx.material.icons.extended)
-    implementation(libs.material.icons.extended)
     implementation(libs.font.awesome)
 
     // Asynchronous image

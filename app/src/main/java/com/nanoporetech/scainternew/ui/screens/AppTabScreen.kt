@@ -1,5 +1,6 @@
 package com.nanoporetech.scainternew.screens
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -72,7 +73,7 @@ import com.nanoporetech.scainternew.ui.utils.NavigationType
 
 /** Route comports the different screens/routes we can navigate to **/
 enum class Route {
-    Home,
+    HealthCareScreen,
     NewConsultationScreen,
     CodeScannerScreen,
     FamilyMembersConsListScreen,
@@ -91,6 +92,8 @@ private data class TabSpec(
     val icon: ImageVector
 )
 
+private const val TAG = "AppTabbScreen"
+
 @Composable
 fun AppTabScreen(
     navigationType: NavigationType,
@@ -100,7 +103,7 @@ fun AppTabScreen(
 ) {
     val tabs = listOf(
         TabSpec(
-            route = Route.Home.name,
+            route = Route.HealthCareScreen.name,
             label = stringResource(R.string.page_home),
             icon = Icons.Outlined.Home
         ),
@@ -219,10 +222,13 @@ private fun MainContent(
                 startDestination = tabs.first().route,
                 modifier = modifier.padding(innerPadding)
             ) {
-                composable(Route.Home.name) {
+                composable(Route.HealthCareScreen.name) {
                     HealthCareScreen(
                         provider = Datasource.healthProviders().first(),
-                        onNewConsultation = {},
+                        onNewConsultation = {
+                            Log.d(TAG, "onNewConsultation clicked")
+                            navController.navigate(Route.NewConsultationScreen.name)
+                        },
                         onViewConsultations = {
                             navController.navigate(Route.ConsultationListScreen.name)
                         },

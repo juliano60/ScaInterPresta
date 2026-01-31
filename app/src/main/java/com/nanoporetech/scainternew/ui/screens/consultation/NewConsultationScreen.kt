@@ -6,10 +6,13 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.QrCodeScanner
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -17,11 +20,14 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.nanoporetech.scainternew.R
 import com.nanoporetech.scainternew.conf.AppConstants
+import com.nanoporetech.scainternew.screens.App
 import com.nanoporetech.scainternew.ui.theme.ScaInterNewTheme
 
 @Composable
@@ -35,17 +41,22 @@ fun NewConsultationScreen(
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Box(
+            Card(
+                shape = RectangleShape,
+                onClick = { onScanQrCode() },
+                colors = CardDefaults.cardColors(
+                    containerColor = AppConstants.lightGreen
+                ),
                 modifier = Modifier
-                    .clickable { onScanQrCode() }
-                    .size(dimensionResource(R.dimen.scanner_icon_size)),
-                contentAlignment = Alignment.Center
+                    .size(dimensionResource(R.dimen.scanner_icon_size))
+                    //.fillMaxWidth()
             ) {
                 Icon(
                     imageVector = Icons.Filled.QrCodeScanner,
                     contentDescription = stringResource(R.string.scan_qr_code),
                     tint = MaterialTheme.colorScheme.primary,
                     modifier = Modifier
+                        //.fillMaxSize()
                         .size(dimensionResource(R.dimen.scanner_icon_size))
                 )
             }

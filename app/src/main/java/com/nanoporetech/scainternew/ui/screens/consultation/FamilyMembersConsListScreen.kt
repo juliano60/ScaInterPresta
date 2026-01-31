@@ -137,7 +137,6 @@ fun MemberRowItem(
                 tint = MaterialTheme.colorScheme.surfaceDim,
                 modifier = Modifier
                     .weight(0.1f)
-                    .padding(dimensionResource(R.dimen.padding_small))
             )
         }
     }
