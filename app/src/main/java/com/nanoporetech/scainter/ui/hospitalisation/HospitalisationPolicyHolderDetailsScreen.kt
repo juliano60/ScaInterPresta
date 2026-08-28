@@ -1,4 +1,4 @@
-package com.nanoporetech.scainter.ui.examination
+package com.nanoporetech.scainter.ui.hospitalisation
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -34,11 +34,10 @@ import com.nanoporetech.scainter.ui.components.PolicyHolderInfoFragment
 import com.nanoporetech.scainter.ui.theme.ScaInterAppTheme
 
 @Composable
-fun ExaminationPolicyHolderDetailsScreen(
+fun HospitalisationPolicyHolderDetailsScreen(
     policyHolder: PolicyHolder,
     modifier: Modifier = Modifier,
-    onRegularExamination: () -> Unit = {},
-    onDayExamination: () -> Unit = {},
+    onNewHospitalisation: () -> Unit = {},
 ) {
     Column(
         modifier = modifier
@@ -69,21 +68,20 @@ fun ExaminationPolicyHolderDetailsScreen(
 
         // OPTIONS
         OptionsInfo(
-            onExamination = onRegularExamination,
-            onDayExamination = onDayExamination,
+            onNewHospitalisation = onNewHospitalisation,
             modifier = Modifier
                 .fillMaxWidth()
         )
 
         Spacer(modifier = Modifier.height(dimensionResource(R.dimen.padding_medium)))
+
     }
 }
 
 @Composable
 private fun OptionsInfo(
     modifier: Modifier = Modifier,
-    onExamination: () -> Unit,
-    onDayExamination: () -> Unit,
+    onNewHospitalisation: () -> Unit,
 ) {
     val paddingMedium = dimensionResource(R.dimen.padding_medium)
     val paddingSmall = dimensionResource(R.dimen.padding_small)
@@ -108,17 +106,9 @@ private fun OptionsInfo(
                 verticalArrangement = Arrangement.spacedBy(paddingSmall),
             ) {
                 OptionCard(
-                    iconImg = painterResource(R.drawable.ecg_heart),
-                    title = stringResource(R.string.add_examination_button),
-                    onClick = onExamination,
-                    modifier = Modifier
-                        .fillMaxWidth(),
-                )
-
-                OptionCard(
-                    iconImg = painterResource(R.drawable.cardiology),
-                    title = stringResource(R.string.add_same_day_examination_button),
-                    onClick = onDayExamination,
+                    iconImg = null,
+                    title = stringResource(R.string.add_hospitalisation_button),
+                    onClick = onNewHospitalisation,
                     modifier = Modifier
                         .fillMaxWidth(),
                 )
@@ -132,13 +122,13 @@ private fun OptionsInfo(
     showBackground = true,
 )
 @Composable
-fun ExaminationPolicyHolderDetailsContentPreview() {
+fun HospitalisationPolicyHolderDetailsScreenPreview() {
     ScaInterAppTheme {
         Surface(
             modifier = Modifier
                 .fillMaxSize()
         ) {
-            ExaminationPolicyHolderDetailsScreen(
+            HospitalisationPolicyHolderDetailsScreen(
                 policyHolder =
                     DataSource.policyHolders().first(),
                 //DataSource.policyHolders()[1],  // consumption limit reached

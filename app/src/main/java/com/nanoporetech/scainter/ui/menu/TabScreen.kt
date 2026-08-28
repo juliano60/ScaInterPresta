@@ -79,6 +79,7 @@ enum class NavResult {
     NewPrescriptionSuccess,
     NewSameDayExaminationSuccess,
     NewRegularExaminationSuccess,
+    NewRegularHospitalisationSuccess
 }
 
 enum class ScaAppScreen(@StringRes val title: Int) {
@@ -100,7 +101,8 @@ enum class ScaAppScreen(@StringRes val title: Int) {
     HospitalisationDetails(title = R.string.hospitalisation_details_title),
     HospitalisationNewHospitalisation(title = R.string.new_hospitalisation),
     HospitalisationFamilyMembersList(title = R.string.new_hospitalisation),
-    HospitalisationPolicyHolderDetails(title = R.string.new_examination),
+    HospitalisationPolicyHolderDetails(title = R.string.new_hospitalisation),
+    HospitalisationRegularHospitalisation(title = R.string.hospitalisation_regular_request_title),
     Support(title = R.string.about_title),
     CodeScanner(title = R.string.code_scanner_title);
 }

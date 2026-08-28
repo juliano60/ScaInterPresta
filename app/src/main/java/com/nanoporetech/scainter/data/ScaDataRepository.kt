@@ -73,6 +73,11 @@ sealed interface NewRegularExaminationResult {
     object NetworkError : NewRegularExaminationResult
     object UnknownError : NewRegularExaminationResult
 }
+sealed interface NewRegularHospitalisationResult {
+    object Success: NewRegularHospitalisationResult
+    object NetworkError : NewRegularHospitalisationResult
+    object UnknownError : NewRegularHospitalisationResult
+}
 
 interface ScaDataRepository {
     suspend fun fetchProvider(username: String, password: String): FetchProviderResult
@@ -94,6 +99,9 @@ interface ScaDataRepository {
     suspend fun newRegularExamination(userId: String, provider: String, doctor: String, specialty: String, insuranceType: String, reason: String,
                                       exam1: String, exam2: String, exam3: String, exam4: String,
                                       exam5: String, exam6: String, exam7: String, exam8: String): NewRegularExaminationResult
+
+    suspend fun newRegularHospitalisation(userId: String, provider: String, type: String, reason: String,
+                                          numDays: String, roomType: String, cost: String): NewRegularHospitalisationResult
 }
 
 private const val TAG = "ScaNetworkDataRepository"
@@ -511,6 +519,55 @@ class ScaNetworkDataRepository(
         } catch (e: Exception) {
             Log.e(TAG, "Unknown error", e)
             NewRegularExaminationResult.UnknownError
+        }
+    }
+
+    override suspend fun newRegularHospitalisation(
+        userId: String,
+        provider: String,
+        type: String,
+        reason: String,
+        numDays: String,
+        roomType: String,
+        cost: String
+    ): NewRegularHospitalisationResult {
+        return try {
+            val response = scaApiService.newRegularHospitalisation(
+                action = "confirm_hospitalisation",
+                userId = userId,
+                provider = provider,
+                type = type,
+                reason = reason,
+                numDays = numDays,
+                roomType = roomType,
+                cost = cost,
+            )
+
+            when {
+                response.isSuccessful -> {
+                    if (response.body()?.isOk() == true) {
+                        NewRegularHospitalisationResult.Success
+                    } else {
+                        NewRegularHospitalisationResult.UnknownError
+                    }
+                }
+
+                response.code() in 500..599 -> {
+                    Log.e(TAG, "Server error: ${response.errorBody()?.string()}")
+                    NewRegularHospitalisationResult.UnknownError
+                }
+
+                else -> {
+                    Log.e(TAG, "Request failed: ${response.errorBody()?.string()}")
+                    NewRegularHospitalisationResult.UnknownError
+                }
+            }
+        } catch (e: IOException) {
+            Log.e(TAG, "Network error", e)
+            NewRegularHospitalisationResult.NetworkError
+        } catch (e: Exception) {
+            Log.e(TAG, "Unknown error", e)
+            NewRegularHospitalisationResult.UnknownError
         }
     }
 }

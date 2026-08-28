@@ -11,6 +11,7 @@ import com.nanoporetech.scainter.data.FetchFamilyMembersResult
 import com.nanoporetech.scainter.data.FetchPolicyHoldersResult
 import com.nanoporetech.scainter.data.NewHospitalisationUiState
 import com.nanoporetech.scainter.data.ScaDataRepository
+import com.nanoporetech.scainter.model.PolicyHolder
 import com.nanoporetech.scainter.ui.events.UiMessage
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -32,6 +33,14 @@ class NewHospitalisationViewModel(
 
     private var loadFamilyJob: Job? = null
     private var loadedFamilyId: String? = null
+
+    fun setPolicyHolder(policyHolder: PolicyHolder) {
+        _uiState.update {
+            it.copy(
+                currentPolicyHolder = policyHolder
+            )
+        }
+    }
 
     fun loadFamily(familyId: String) {
         if (familyId == loadedFamilyId) {

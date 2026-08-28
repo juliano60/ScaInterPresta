@@ -32,7 +32,7 @@ import com.nanoporetech.scainter.ui.theme.ScaInterTheme
 
 @Composable
 fun OptionCard(
-    iconImg: Painter,
+    iconImg: Painter?,
     title: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
@@ -52,13 +52,15 @@ fun OptionCard(
                 .fillMaxWidth()
                 .padding(dimensionResource(R.dimen.padding_medium))
         ) {
-            Icon(
-                painter = iconImg,
-                contentDescription = null,
-                tint = foregroundColor
-            )
+            if (iconImg != null) {
+                Icon(
+                    painter = iconImg,
+                    contentDescription = null,
+                    tint = foregroundColor
+                )
 
-            Spacer(modifier = Modifier.width(dimensionResource(R.dimen.padding_small)))
+                Spacer(modifier = Modifier.width(dimensionResource(R.dimen.padding_small)))
+            }
 
             Column(modifier = Modifier
                 .weight(1f)) {

@@ -2,6 +2,7 @@ package com.nanoporetech.scainter.model
 
 import android.net.Uri
 import com.nanoporetech.scainter.conf.AppConfiguration
+import com.nanoporetech.scainter.conf.appConfig
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -25,14 +26,9 @@ data class Hospitalisation(
     val hospitalisationCost: Double,
     val dateOfBirth: String
 ) {
-
-    /**
-     * Photos_SCA/<internalId>.jpg
-     */
-    fun imageUri(appConfig: AppConfiguration): Uri =
-        Uri.Builder()
-            .scheme(appConfig.httpProtocol)
-            .authority(appConfig.hostname)
-            .path("${appConfig.imagesPath}/$internalId.jpg")
-            .build()
 }
+
+val Hospitalisation.imageUrl: String
+    get() {
+        return "${appConfig.httpProtocol}://${appConfig.hostname}${appConfig.imagesPath}/$internalId.jpg"
+    }
