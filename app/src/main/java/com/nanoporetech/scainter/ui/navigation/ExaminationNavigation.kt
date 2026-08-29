@@ -389,7 +389,7 @@ private fun NavGraphBuilder.existingExaminationGraph(
                 NavResult.NewSameDayExaminationSuccess.name -> {
                     snackbarHostState.showSnackbar(
                         AppSnackbarVisuals(
-                            message = context.getString(R.string.new_same_day_care_success_message),
+                            message = context.getString(R.string.exam_new_same_day_care_success_message),
                             type = SnackbarType.Success
                         )
                     )
@@ -397,7 +397,7 @@ private fun NavGraphBuilder.existingExaminationGraph(
                 NavResult.NewRegularExaminationSuccess.name -> {
                     snackbarHostState.showSnackbar(
                         AppSnackbarVisuals(
-                            message = context.getString(R.string.new_regular_exam_success_message),
+                            message = context.getString(R.string.exam_new_regular_exam_success_message),
                             type = SnackbarType.Success
                         )
                     )

@@ -296,7 +296,7 @@ private fun NavGraphBuilder.existingConsultationGraph(
                 NavResult.NewConsultationSuccess.name -> {
                     snackbarHostState.showSnackbar(
                         AppSnackbarVisuals(
-                            message = context.getString(R.string.new_consultation_success_message),
+                            message = context.getString(R.string.consul_new_consultation_success_message),
                             type = SnackbarType.Success
                         )
                     )

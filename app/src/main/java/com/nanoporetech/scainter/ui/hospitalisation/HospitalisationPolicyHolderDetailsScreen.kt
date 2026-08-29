@@ -107,7 +107,7 @@ private fun OptionsInfo(
             ) {
                 OptionCard(
                     iconImg = null,
-                    title = stringResource(R.string.add_hospitalisation_button),
+                    title = stringResource(R.string.hosp_add_button),
                     onClick = onNewHospitalisation,
                     modifier = Modifier
                         .fillMaxWidth(),

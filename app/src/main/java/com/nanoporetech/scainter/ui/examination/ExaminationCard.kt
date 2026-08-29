@@ -52,7 +52,7 @@ fun ExaminationCard(
                 .padding(dimensionResource(R.dimen.padding_medium))
         ) {
             CardHeaderDrawable(
-                title = stringResource(R.string.examination_menu_sub),
+                title = stringResource(R.string.exam_menu_sub),
                 iconImg = painterResource(R.drawable.vital_signs),
                 textColor = Color.White,
                 color = Color.White,
@@ -60,13 +60,13 @@ fun ExaminationCard(
             )
 
             CardRow(
-                title = stringResource(R.string.new_examination),
+                title = stringResource(R.string.new_examination_menu),
                 iconImg = Icons.Outlined.Search,
                 onClickButton = onNewExamination
             )
 
             CardRow(
-                title = stringResource(R.string.view_examinations),
+                title = stringResource(R.string.view_examinations_menu),
                 iconImg = Icons.AutoMirrored.Outlined.Assignment,
                 onClickButton = onViewExamination
             )

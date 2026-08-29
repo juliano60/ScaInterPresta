@@ -50,7 +50,7 @@ class RegularHospitalisationViewModel(
                     cost = _uiState.value.roomCost,
                 )) {
                     NewRegularHospitalisationResult.Success -> {
-                        _events.emit(UiMessage.Success(R.string.new_regular_hosp_success_message))
+                        _events.emit(UiMessage.Success(R.string.hosp_new_added_success_message))
                     }
 
                     NewRegularHospitalisationResult.NetworkError -> {

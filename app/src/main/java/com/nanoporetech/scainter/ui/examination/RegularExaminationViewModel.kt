@@ -89,7 +89,7 @@ class RegularExaminationViewModel(
                     exam8 = _uiState.value.selectedExaminations[7].id.toString()
                 )) {
                     NewRegularExaminationResult.Success -> {
-                        _events.emit(UiMessage.Success(R.string.new_regular_exam_success_message))
+                        _events.emit(UiMessage.Success(R.string.exam_new_regular_exam_success_message))
                     }
 
                     NewRegularExaminationResult.NetworkError -> {

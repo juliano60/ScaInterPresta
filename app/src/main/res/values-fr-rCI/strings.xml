@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">ScaInter</string>
-    <string name="company_name">SCA INTER A</string>
+    <string name="company_name">SCA Inter A</string>
 
     <!-- LOGIN -->
     <string name="welcome_message">MySCA Partners</string>
@@ -11,55 +11,72 @@
     <string name="remember_me">Se souvenir de moi</string>
     <string name="login">Se connecter</string>
     <string name="forgotten_password_title">Mot de passe oublié</string>
-    <string name="forgotten_password_text">Pour vos accès, veuillez contacter le départment informatique de SCA INTER A aux numéros suivants:</string>
+    <string name="forgotten_password_text">Pour vos accès, veuillez contacter le département informatique de SCA INTER A aux numéros suivants:</string>
+    <string name="show_password">Afficher le mot de passe</string>
+    <string name="hide_password">Masquer le mot de passe</string>
 
     <!-- SUPPORT PAGE -->
-    <string name="contact_hours">Lundi au Vendredi de 08h00 à 18h00</string>
-    <string name="sca_technical_support">SCA Inter A Support Technique</string>
+    <string name="contact_hours">Du lundi au vendredi de 08h00 à 18h00</string>
+    <string name="sca_technical_support">Support technique SCA Inter A</string>
 
     <!-- HOME PAGE -->
     <string name="logout">Se déconnecter</string>
-    <string name="health_care">Centre de Santé</string>
     <string name="welcome_header">Bienvenue, %s</string>
-    <string name="dashboard">Tableau de Bord</string>
-    <string name="consultation_menu_title">Mes Consultations</string>
-    <string name="examination_menu_title">Mes Examens</string>
-    <string name="hospitalisation_menu_title">Mes Hospitalisations</string>
-    <string name="new_examination">Etablir un examen</string>
-    <string name="new_hospitalisation">Etablir une hospitalisation</string>
-    <string name="view_care_sheet">Voir mes feuilles de soins</string>
-    <string name="view_examinations">Voir mes examens</string>
-    <string name="view_hospitalisations">Voir mes hospitalisations</string>
-
-    <!-- DESTINATIONS -->
+    <string name="new_examination_menu">Etablir un examen</string>
+    <string name="new_hospitalisation_menu">Etablir une hospitalisation</string>
+    <string name="new_consultation_menu">Etablir une feuille de soins</string>
+    <string name="view_care_sheet_menu">Voir mes feuilles de soins</string>
+    <string name="view_examinations_menu">Voir mes examens</string>
+    <string name="view_hospitalisations_menu">Voir mes hospitalisations</string>
+    <string name="health_care_title">Centre de santé</string>
     <string name="home_title">Accueil</string>
-    <string name="support_title">Assistance</string>
 
-    <!-- CONSULTATION PAGE -->
-    <string name="act_label">Acte:</string>
-    <string name="consultation_info_title">Consultation</string>
-    <string name="date_label">Date:</string>
-    <string name="profile_image">Photo de profile</string>
-    <string name="coverage_label">Couverture:</string>
+    <!-- COMMON -->
+    <string name="back_button">Retour</string>
+    <string name="not_available">N/A</string>
     <string name="total_cost_title">Montants</string>
     <string name="total_cost_label">Total:</string>
     <string name="total_sca_label">Total SCA:</string>
     <string name="total_holder_label">Total Assuré:</string>
+    <string name="date_label">Date:</string>
+    <string name="profile_image">Photo de profil</string>
+    <string name="confirmation_prompt">Procéder avec le changement?</string>
+    <string name="cancel_button">Annuler</string>
     <string name="policy_members">Membres Assurés</string>
+    <string name="confirmation_abort_prompt">Souhaitez-vous annuler l\'opération en cours ?</string>
+    <string name="confirmation_exit_prompt">Quitter l\'application?</string>
+    <string name="sca_about_title">MySCA Partners</string>
+    <string name="sca_about_text">MySCA Partners est une application mobile qui permet aux utilisateurs d\'accéder à des services de santé via un réseau de soins défini par la société SCA INTER A. Cette application est donc un produit du groupe SCA INTER A.</string>
+    <string name="our_contacts">Nos coordonnées:</string>
+    <string name="about_title">À Propos de nous</string>
+    <string name="coverage_label_and_value">Couverture %s</string>
+    <string name="send_button">Envoyer</string>
+    <string name="confirm_button">Valider</string>
+    <string name="close_button">Fermer</string>
+    <string name="policy_status_title">Statut Assuré</string>
+    <string name="policy_status_label">Statut assuré:</string>
+    <string name="subscriber_status_label">Statut souscripteur:</string>
+    <string name="confirmation_generic_title">Confirmer</string>
 
-    <!-- MISCELLANEOUS -->
-    <string name="back_button">Retour</string>
+    <!-- CODE SCANNER -->
+    <string name="scan_qr_code">Scanner un QR code</string>
+    <string name="code_scanner_title">Scanner un Code QR</string>
+    <string name="camera_overlay_hint">Placer le code QR devant la caméra.</string>
+    <string name="camera_permissions_prompt">L\'autorisation d\'utiliser la caméra est requise pour scanner les codes QR.</string>
+    <string name="camera_permissions_grant">Accorder l\'autorisation</string>
 
     <!-- ERRORS -->
-    <string name="scan_qr_code">Scanner un QR code</string>
     <string name="err_invalid_credentials_message">Identifiant ou mot de passe incorrect.</string>
     <string name="err_network_error_message">Connexion réseau indisponible.</string>
     <string name="err_unknown_error_message">Une erreur est survenue. Veuillez réessayer.</string>
-    <string name="health_care_title">Centre de Santé</string>
-    <string name="consultation_list_title">Mes Consultations</string>
-    <string name="examination_list_title">Mes Examinations</string>
-    <string name="hospitalisation_list_title">Mes Hospitalisations</string>
-    <string name="consultation_details_title">Détails Consultation</string>
+
+    <!-- CONSULTATION -->
+    <string name="act_label">Acte:</string>
+    <string name="consul_new_consultation_title">Etablir une feuille de soins</string>
+    <string name="consul_info_title">Consultation</string>
+    <string name="consul_list_title">Mes Consultations</string>
+    <string name="consul_details_title">Détails Consultation</string>
+    <string name="consul_menu_sub">Mes consultations</string>
     <string name="medical_prescription_title">Prescription Médicale</string>
     <string name="prescriber_label">Prescripteur:</string>
     <string name="affection_label">Code affection:</string>
@@ -69,89 +86,49 @@
     <string name="affection_hint">Code affection</string>
     <string name="medication_hint">Médicament</string>
     <string name="posology_hint">Posologie</string>
-    <string name="add_button">Ajouter</string>
-    <string name="consultation_details_sub">Détails consultation</string>
-    <string name="confirm_button">Valider</string>
-    <string name="medical_prescription_sub">Prescription médicale</string>
-    <string name="close_button">Fermer</string>
-    <string name="consultation_menu_sub">Mes consultations</string>
-    <string name="examination_menu_sub">Mes examens</string>
-    <string name="hospitalisation_menu_sub">Mes hospitalisations</string>
     <string name="remove_medication_button">Supprimer le médicament</string>
     <string name="edit_prescription_button">Modifier</string>
-    <string name="confirmation_prompt">Procéder avec le changement?</string>
-    <string name="cancel_button">Annuler</string>
     <string name="remove_medication_prompt">Effacer le médicament?</string>
-    <string name="no_recent_consultation">Aucune consultation récente</string>
-    <string name="no_recent_examination">Aucune examination récente</string>
-    <string name="no_recent_hospitalisation">Aucune hospitalisation récente</string>
-    <string name="not_available">N/A</string>
-    <string name="new_consultation">Etablir une feuille de soins</string>
-    <string name="code_scanner_title">Scanner un Code QR</string>
-    <string name="camera_overlay_hint">Placer le code QR devant la caméra.</string>
-    <string name="show_password">Afficher le mot de passe</string>
-    <string name="hide_password">Masquer le mot de passe</string>
-    <string name="camera_permissions_prompt">L\'autorisation d\'utiliser la caméra est requise pour scanner les codes QR.</string>
-    <string name="camera_permissions_grant">Accorder l\'autorisation</string>
-    <string name="policy_status_title">Statut Assuré</string>
-    <string name="policy_status_label">Statut assuré:</string>
-    <string name="subscriber_status_label">Statut souscripteur:</string>
-    <string name="last_consultation_label">Dernière consultation:</string>
+    <string name="consul_last_consultation_label">Dernière consultation:</string>
     <string name="type_label">Type:</string>
     <string name="provider_label">Prestataire:</string>
     <string name="options_title">Options</string>
     <string name="consumption_limit_reached_message">Vous avez atteint votre limite de consommations.</string>
     <string name="status_inactive_message">Statut inactif ou dormant</string>
-    <string name="consultation_label">Consultation</string>
+    <string name="consul_label">Consultation</string>
     <string name="cost_label">Montant</string>
-    <string name="new_consultation_success_message">Nouvelle feuille de soins établie.</string>
-    <string name="err_new_consultation_message">Erreur lors de l\'ajout d\'une nouvelle feuille de soin.</string>
-    <string name="confirmation_generic_title">Confirmer</string>
-    <string name="yes_button">Oui</string>
-    <string name="confirmation_abort_prompt">Souhaitez-vous annuler l\'opération en cours ?</string>
-    <string name="confirmation_exit_prompt">Quitter l\'application?</string>
-    <string name="sca_about_title">MySCA Partners</string>
-    <string name="sca_about_text">MySCA Partners est une application mobile qui permet aux utilisateurs d\'accéder à des services de santé via un réseau de soins défini par la société SCA INTER A. Cette application est donc un produit du groupe SCA INTER A.</string>
-    <string name="our_contacts">Nos coordonnées:</string>
-    <string name="about_title">À Propos de nous</string>
-    <string name="coverage_label_and_value">Couverture %s</string>
-    <string name="quantity_label">Quantité</string>
+    <string name="consul_new_consultation_success_message">Nouvelle feuille de soins établie.</string>
+    <string name="consul_err_new_consultation_message">Erreur lors de l\'ajout d\'une nouvelle feuille de soin.</string>
     <string name="medication_1_title">Médicament 1</string>
     <string name="medication_2_title">Médicament 2</string>
     <string name="medication_3_title">Médicament 3</string>
     <string name="medication_4_title">Médicament 4</string>
-    <string name="change_prescription_button">Modifier prescription</string>
     <string name="new_prescription_added">Nouvelle prescription médicale établie.</string>
     <string name="new_prescription_error">Erreur lors de la création de la prescription.</string>
-    <string name="send_button">Envoyer</string>
     <string name="new_prescription_confirmation">Confirmer la prescription?</string>
-    <string name="consultations_loaded_message">Liste des consultations mise à jour.</string>
-    <string name="consultations_loaded_error_message">Error lors de la mise  à jour des consultations.</string>
-    <string name="examinations_loaded_message">Liste des examens mise à jour.</string>
-    <string name="hospitalistions_loaded_message">Liste des hospitalisations mise à jour.</string>
-    <string name="examinations_loaded_error_message">Error lors de la mise  à jour des examinations.</string>
-    <string name="hospitalisations_loaded_error_message">Error lors de la mise  à jour des hospitalisations.</string>
     <string name="policy_type_label">Réseau de soins:</string>
-    <string name="add_examination_button">Demande d\'examen</string>
-    <string name="add_same_day_examination_button">Demande de soins d\'un jour</string>
-    <string name="examination_same_day_title">Soins d\'un jour</string>
+    <string name="no_recent_consultation">Aucune consultation récente</string>
+
+    <!-- EXAMINATION -->
+    <string name="exam_new_examination_title">Etablir un examen</string>
+    <string name="exam_menu_sub">Mes examens</string>
+    <string name="exam_list_title">Mes Examens</string>
+    <string name="exam_add_button">Demande d\'examen</string>
+    <string name="exam_same_day_add_button">Demande de soins d\'un jour</string>
+    <string name="exam_same_day_title">Soins d\'un jour</string>
     <string name="exam_same_day_details">Détails de la demande</string>
     <string name="exam_reason_hint">Motif des soins</string>
-    <string name="exam_designatinon_hint">Désignation</string>
+    <string name="exam_designation_hint">Désignation</string>
     <string name="exam_cost_hint">Montant</string>
     <string name="exam_same_day_request_title">Demande de soins</string>
     <string name="exam_regular_request_title">Demande d\'examen</string>
-    <string name="new_same_day_care_success_message">Nouvelle demande de soins établie.</string>
-    <string name="examination_details_title">Détails Examen</string>
-    <string name="hospitalisation_details_title">Détails Hospitalisation</string>
+    <string name="exam_details_title">Détails Examen</string>
     <string name="exam_info_title">Demande d\'examen</string>
     <string name="exam_status_label">Statut:</string>
     <string name="exam_validator_label">Validé par:</string>
     <string name="exam_doctor_label">Médecin Traitant:</string>
     <string name="exam_specialty_label">Acte:</string>
     <string name="exam_reason_label">Motif:</string>
-    <string name="exam_designation_label">Examen:</string>
-    <string name="exam_list_title">Examens demandés</string>
     <string name="exam_default_answer">En cours</string>
     <string name="exam_request_title">Détails de la demande</string>
     <string name="exam_doctor_hint">Médecin Traitant</string>
@@ -166,18 +143,25 @@
     <string name="exam_6_hint">Examen 6</string>
     <string name="exam_7_hint">Examen 7</string>
     <string name="exam_8_hint">Examen 8</string>
-    <string name="exam_options_loaded_message">Liste d\'examens mise à jour</string>
-    <string name="new_regular_exam_success_message">Nouvelle demande d\'examen établie.</string>
-    <string name="add_hospitalisation_button">Saisir un bon d\'hospitalisation</string>
-    <string name="hospitalisation_regular_request_title">Demande d\'hospitalisation</string>
+    <string name="exam_new_regular_exam_success_message">Nouvelle demande d\'examen établie.</string>
+    <string name="exam_new_same_day_care_success_message">Nouvelle demande de soins établie.</string>
+    <string name="no_recent_examination">Aucun examen récente</string>
+
+    <!-- HOSPITALISATION -->
+    <string name="hosp_new_hospitalisation_title">Etablir une hospitalisation</string>
+    <string name="hosp_menu_sub">Mes hospitalisations</string>
+    <string name="hosp_list_title">Mes Hospitalisations</string>
+    <string name="hosp_details_title">Détails Hospitalisation</string>
+    <string name="hosp_add_button">Saisir un bon d\'hospitalisation</string>
+    <string name="hosp_request_title">Demande d\'hospitalisation</string>
     <string name="hosp_placement_under_observation">Mise en observation</string>
     <string name="hosp_medical">Médicale</string>
     <string name="hosp_surgical">Chirurgicale</string>
     <string name="hosp_child_birth">Accouchement</string>
     <string name="hosp_other">Autre</string>
-    <string name="hosp_type_hint">Type d\'hospitalisation...</string>
+    <string name="hosp_type_hint">Type d\'hospitalisation…</string>
     <string name="hosp_type_label">Type:</string>
-    <string name="hosp_room_type_hint">Type de chambre...</string>
+    <string name="hosp_room_type_hint">Type de chambre…</string>
     <string name="hosp_room_single">Chambre simple</string>
     <string name="hosp_room_double">Chambre double</string>
     <string name="hosp_room_suite">Suite</string>
@@ -187,11 +171,12 @@
     <string name="hosp_num_days_label">Durée:</string>
     <string name="hosp_num_days_hint">Nombre de jours</string>
     <string name="hosp_room_type_label">Chambre:</string>
-    <string name="new_regular_hosp_success_message">Nouveau bon d\'hospitalisation établie.</string>
+    <string name="hosp_new_added_success_message">Nouveau bon d\'hospitalisation établie.</string>
     <string name="hosp_room_cost_label">Chambre:</string>
     <string name="hosp_room_cost_hint">Coût de la chambre</string>
     <string name="hosp_info_title">Hospitalisation</string>
     <string name="hosp_status_label">Statut:</string>
     <string name="hosp_num_days_res">%d jour(s)</string>
     <string name="hosp_hospitalisation_cost_label">Hospitalisation:</string>
+    <string name="no_recent_hospitalisation">Aucune hospitalisation récente</string>
 </resources>

@@ -74,7 +74,7 @@ class SameDayExaminationViewModel(
                     cost = _uiState.value.costTotal
                 )) {
                     NewDayCareExaminationResult.Success -> {
-                        _events.emit(UiMessage.Success(R.string.new_same_day_care_success_message))
+                        _events.emit(UiMessage.Success(R.string.exam_new_same_day_care_success_message))
                     }
 
                     NewDayCareExaminationResult.NetworkError -> {

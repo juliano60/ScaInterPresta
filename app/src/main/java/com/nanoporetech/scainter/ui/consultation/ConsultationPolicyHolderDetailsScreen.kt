@@ -163,7 +163,7 @@ private fun OptionsInfo(
                         onValueChange = {},
                         label = {
                             Text(
-                                text = stringResource(R.string.consultation_label)
+                                text = stringResource(R.string.consul_label)
                             )
                         },
                         trailingIcon = {
@@ -265,7 +265,7 @@ private fun InsuranceInfo(
             valueColor = getStatusColor(policyHolder.providerStatus)
         ),
         CardItem(
-            stringResource(R.string.last_consultation_label),
+            stringResource(R.string.consul_last_consultation_label),
             displayedDate(policyHolder.lastConsultationDate) ?: stringResource(R.string.not_available)
         ),
             CardItem(
@@ -290,7 +290,7 @@ private fun InsuranceInfo(
                 .padding(paddingMedium)
         ) {
             CardHeader(
-                title = stringResource(R.string.consultation_info_title),
+                title = stringResource(R.string.consul_info_title),
                 iconImg = Icons.Filled.AttachFile,
                 textColor = Color.Black,
                 modifier = Modifier

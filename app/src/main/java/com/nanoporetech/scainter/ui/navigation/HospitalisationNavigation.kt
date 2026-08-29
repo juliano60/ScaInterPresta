@@ -316,7 +316,7 @@ private fun NavGraphBuilder.existingHospitalisationGraph(
                 NavResult.NewRegularHospitalisationSuccess.name -> {
                     snackbarHostState.showSnackbar(
                         AppSnackbarVisuals(
-                            message = context.getString(R.string.new_regular_hosp_success_message),
+                            message = context.getString(R.string.hosp_new_added_success_message),
                             type = SnackbarType.Success
                         )
                     )

@@ -164,10 +164,10 @@ class NewConsultationViewModel(
                 act = _uiState.value.selectedConsultation
             )) {
                 true -> {
-                    _events.emit(UiMessage.Success(R.string.new_consultation_success_message))
+                    _events.emit(UiMessage.Success(R.string.consul_new_consultation_success_message))
                 }
                 else -> {
-                    _events.emit(UiMessage.Error(R.string.err_new_consultation_message))
+                    _events.emit(UiMessage.Error(R.string.consul_err_new_consultation_message))
                 }
             }
         }

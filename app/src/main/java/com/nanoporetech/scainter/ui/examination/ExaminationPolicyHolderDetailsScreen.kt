@@ -109,7 +109,7 @@ private fun OptionsInfo(
             ) {
                 OptionCard(
                     iconImg = painterResource(R.drawable.ecg_heart),
-                    title = stringResource(R.string.add_examination_button),
+                    title = stringResource(R.string.exam_add_button),
                     onClick = onExamination,
                     modifier = Modifier
                         .fillMaxWidth(),
@@ -117,7 +117,7 @@ private fun OptionsInfo(
 
                 OptionCard(
                     iconImg = painterResource(R.drawable.cardiology),
-                    title = stringResource(R.string.add_same_day_examination_button),
+                    title = stringResource(R.string.exam_same_day_add_button),
                     onClick = onDayExamination,
                     modifier = Modifier
                         .fillMaxWidth(),

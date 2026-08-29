@@ -49,7 +49,7 @@ fun HospitalisationCard(
                 .padding(dimensionResource(R.dimen.padding_medium))
         ) {
             CardHeader(
-                title = stringResource(R.string.hospitalisation_menu_sub),
+                title = stringResource(R.string.hosp_menu_sub),
                 iconImg = Icons.Filled.Bed,
                 textColor = Color.White,
                 tintColor = Color.White,
@@ -57,13 +57,13 @@ fun HospitalisationCard(
             )
 
             CardRow(
-                title = stringResource(R.string.new_hospitalisation),
+                title = stringResource(R.string.new_hospitalisation_menu),
                 iconImg = Icons.Outlined.Search,
                 onClickButton = onNewHospitalisation
             )
 
             CardRow(
-                title = stringResource(R.string.view_hospitalisations),
+                title = stringResource(R.string.view_hospitalisations_menu),
                 iconImg = Icons.AutoMirrored.Outlined.Assignment,
                 onClickButton = onViewHospitalisation
             )

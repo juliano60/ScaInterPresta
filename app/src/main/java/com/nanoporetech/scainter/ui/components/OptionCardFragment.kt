@@ -98,7 +98,7 @@ fun OptionCardPreview() {
             ) {
                 OptionCard(
                     iconImg = painterResource(R.drawable.ecg_heart),
-                    title = stringResource(R.string.add_same_day_examination_button),
+                    title = stringResource(R.string.exam_same_day_add_button),
                     onClick = {},
                     modifier = Modifier
                         .wrapContentHeight(),
@@ -108,7 +108,7 @@ fun OptionCardPreview() {
 
                 OptionCard(
                     iconImg = painterResource(R.drawable.ecg_heart),
-                    title = stringResource(R.string.add_same_day_examination_button),
+                    title = stringResource(R.string.exam_same_day_add_button),
                     onClick = {},
                     modifier = Modifier
                         .wrapContentHeight(),

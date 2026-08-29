@@ -54,7 +54,7 @@ fun ConsultationCard(
                 .padding(dimensionResource(R.dimen.padding_medium))
         ) {
             CardHeaderDrawable(
-                title = stringResource(R.string.consultation_menu_sub),
+                title = stringResource(R.string.consul_menu_sub),
                 iconImg = painterResource(R.drawable.stethoscope),
                 textColor = Color.White,
                 color = MaterialTheme.colorScheme.surfaceContainerLowest,
@@ -62,13 +62,13 @@ fun ConsultationCard(
             )
 
             CardRow(
-                title = stringResource(R.string.new_consultation),
+                title = stringResource(R.string.new_consultation_menu),
                 iconImg = Icons.Outlined.Search,
                 onClickButton = onNewConsultation
             )
 
             CardRow(
-                title = stringResource(R.string.view_care_sheet),
+                title = stringResource(R.string.view_care_sheet_menu),
                 iconImg = Icons.AutoMirrored.Outlined.Assignment,
                 onClickButton = onViewConsultations
             )

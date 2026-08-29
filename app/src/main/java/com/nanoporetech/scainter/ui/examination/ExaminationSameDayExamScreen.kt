@@ -129,7 +129,7 @@ fun CareSection(
                 .padding(paddingMedium)
         ) {
             CardHeader(
-                title = stringResource(R.string.examination_same_day_title),
+                title = stringResource(R.string.exam_same_day_title),
                 iconImg = Icons.AutoMirrored.Filled.Assignment,
                 modifier = Modifier
                     .padding(bottom = paddingSmall)
@@ -169,7 +169,7 @@ fun CareSection(
 
             PrimaryOutlinedTextField(
                 value = designation,
-                placeholder = stringResource(R.string.exam_designatinon_hint),
+                placeholder = stringResource(R.string.exam_designation_hint),
                 onValueChanged = onDesignationChanged,
                 modifier = Modifier.fillMaxWidth(),
                 keyboardOptions = KeyboardOptions.Default.copy(

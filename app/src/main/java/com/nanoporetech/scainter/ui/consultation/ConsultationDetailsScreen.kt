@@ -208,7 +208,7 @@ fun ConsultationInfo(
         Column(modifier = Modifier
             .padding(paddingMedium)) {
             CardHeaderDrawable(
-                title = stringResource(R.string.consultation_info_title),
+                title = stringResource(R.string.consul_info_title),
                 iconImg = painterResource(R.drawable.stethoscope),
                 modifier = Modifier
                     .padding(bottom = paddingMedium)
