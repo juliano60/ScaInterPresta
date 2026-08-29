@@ -188,10 +188,10 @@
     <string name="hosp_num_days_hint">Nombre de jours</string>
     <string name="hosp_room_type_label">Chambre:</string>
     <string name="new_regular_hosp_success_message">Nouveau bon d\'hospitalisation établie.</string>
-    <string name="hosp_room_cost_label">Coût chambre:</string>
+    <string name="hosp_room_cost_label">Chambre:</string>
     <string name="hosp_room_cost_hint">Coût de la chambre</string>
     <string name="hosp_info_title">Hospitalisation</string>
     <string name="hosp_status_label">Statut:</string>
     <string name="hosp_num_days_res">%d jour(s)</string>
-    <string name="hosp_hospitalisation_cost_label">Coût hospit.:</string>
+    <string name="hosp_hospitalisation_cost_label">Hospitalisation:</string>
 </resources>
