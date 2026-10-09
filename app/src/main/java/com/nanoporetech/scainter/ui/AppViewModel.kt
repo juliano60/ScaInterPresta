@@ -81,7 +81,7 @@ class AppViewModel(
                           credentialsStore.clearCredentials()
                       }
 
-                      deviceTokenRegistrar.registerDeviceToken(result.provider.id.toString())
+                      //deviceTokenRegistrar.registerDeviceToken(result.provider.id.toString())
                       _events.emit(AuthEvent.LoginSucceeded)
                   }
                   is FetchProviderResult.AuthenticationFailed -> {
