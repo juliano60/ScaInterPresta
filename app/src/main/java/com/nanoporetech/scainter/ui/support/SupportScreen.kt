@@ -14,6 +14,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Phone
 import androidx.compose.material.icons.outlined.Apps
+import androidx.compose.material.icons.outlined.Business
 import androidx.compose.material.icons.outlined.Email
 import androidx.compose.material.icons.outlined.HeadsetMic
 import androidx.compose.material.icons.outlined.Info
@@ -75,7 +76,7 @@ fun SupportScreen(
             ) {
                 CardHeader(
                     title = stringResource(R.string.sca_about_title),
-                    iconImg = Icons.Outlined.Apps,
+                    iconImg = Icons.Outlined.Business,
                     modifier = Modifier.fillMaxWidth()
                 )
 

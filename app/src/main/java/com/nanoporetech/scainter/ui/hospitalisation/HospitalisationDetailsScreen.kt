@@ -104,13 +104,12 @@ fun HospitalisationInfo(
         }
     }
 
-    addIfNotEmpty(stringResource(R.string.hosp_type_label), hospitalisation.type, Color.Red)
     addIfNotEmpty(stringResource(R.string.hosp_status_label), hospitalisation.status, Color.Red)
     addIfNotEmpty(stringResource(R.string.hosp_reason_label), hospitalisation.reason)
-    addIfNotEmpty(stringResource(R.string.hosp_num_days_label),
-stringResource(R.string.hosp_num_days_res, hospitalisation.durationDays),
-        Color.Red)
+    addIfNotEmpty(stringResource(R.string.hosp_type_label), hospitalisation.type)
     addIfNotEmpty(stringResource(R.string.hosp_room_type_label), hospitalisation.roomType)
+    addIfNotEmpty(stringResource(R.string.hosp_num_days_label),
+stringResource(R.string.hosp_num_days_res, hospitalisation.durationDays))
     addIfNotEmpty(stringResource(R.string.date_label), displayedDateAndTime(hospitalisation.creationDate))
 
     val paddingMedium = dimensionResource(R.dimen.padding_medium)
